@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "1092849980720",
+    "project_id": "freelanceing-app",
+    "storage_bucket": "freelanceing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092849980720:android:d668e014258da11533a4f5",
+        "android_client_info": {
+          "package_name": "com.easyService.app24"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092849980720-gll3qr0mta4s4kuoohruv63rdlcd807r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.easyService.app24",
+            "certificate_hash": "147dbf3b4ba5f4e3fb806dd31dadae267df82dfb"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZWK37oQYE_tpFWyvry_RAdN5wV7L32uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
