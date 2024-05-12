@@ -495,19 +495,17 @@ Proudly made in Algeria
 
           "cancel":"Cancel",
 
-          "loginNow":"Aller à la connexion",
+          "loginNow":"Login Now",
 
 
-          "checkLink":"Vérifier le courriel",
+          "checkLink":"Check email",
 
 
             "checkLink2":'We have sent a verification link to activate your account',
           
 
-
              "near":"Service Provider Nearby",
 
-         
 
           "editDataAndSendToFreelancer":"Edit Deal Data ",
 

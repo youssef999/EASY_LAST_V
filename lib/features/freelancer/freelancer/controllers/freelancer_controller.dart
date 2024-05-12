@@ -64,9 +64,18 @@ filterComment(){
     freelancerImage=[];
    print("FREELNACER........XXX......");
     String email=box.read('email')??'';
+    String empType=box.read("empType");
+    String type='freelancers';
+
+    if(empType=='offline'){
+      type='employees';
+    }else{
+      type='freelancers';
+    }
+
     freelancerData = [];
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('freelancers')
+        await FirebaseFirestore.instance.collection(type)
         .where('email',isEqualTo:email)
         .get();
     try {

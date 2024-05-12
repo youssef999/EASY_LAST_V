@@ -9,6 +9,7 @@ class ProfileController extends GetxController {
   RxMap<String, dynamic>? userData = <String, dynamic>{}.obs;
    String? roleId ;
 
+
  @override
   void onInit() async {
         final box = GetStorage();
@@ -20,7 +21,17 @@ class ProfileController extends GetxController {
 
   Future<QuerySnapshot<Map<String, dynamic>>> getUserDataByEmail(
       String email) async {
-    final userRef = FirebaseFirestore.instance.collection(roleId == '1' ?'users': 'freelancers');
+    final box = GetStorage();
+    String empType=box.read('empType');
+    String type='freelancers';
+    if(empType=='offline'){
+      type='employees';
+    }else{
+      type='freelancers';
+    }
+
+    final userRef = FirebaseFirestore.
+    instance.collection(roleId == '1' ?'users': type);
     return await userRef.where('email', isEqualTo: email).get();
   }
                                          
@@ -32,7 +43,6 @@ class ProfileController extends GetxController {
     if (email != null) {
       final snapshot = await getUserDataByEmail(email);
       if (snapshot.docs.isNotEmpty) {
-      
           userData?.value = snapshot.docs.first.data();
       update();
       }

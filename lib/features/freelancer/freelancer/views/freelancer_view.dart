@@ -48,7 +48,7 @@ class _FreelancerViewState extends State<FreelancerView> {
               const SizedBox(
                 height: 12,
               ),
-             // freelancerServiceWidget(),
+             // freelancerServiceWidget(),s
             ],
           );
         }),

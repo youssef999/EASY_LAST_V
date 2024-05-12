@@ -26,6 +26,7 @@ import 'features/home/views/all_services.dart';
         channelName: 'Basic notifications',
         channelDescription: 'notification chanel for testing')
   ]);
+
   final box=GetStorage();
   String keylocal = box.read('locale')??'x';///en //ar //' '
   ///
@@ -43,6 +44,7 @@ class MainApp extends StatefulWidget {
   const MainApp({super.key});
   @override
   State<MainApp> createState() => _MainAppState();
+  
 }
 
 class _MainAppState extends State<MainApp> {

@@ -687,6 +687,7 @@ class AuthController extends GetxController {
             });
           } else {
             if (empType == 'online'.tr) {
+              box.write('empType', 'online');
               await firestore.collection('freelancers').add({
                 'name': nameController.text,
                 'password': passController.text,
@@ -707,8 +708,8 @@ class AuthController extends GetxController {
                 'image': profileDownloadUrl[0]
               });
             } else {
+                box.write('empType', 'offline');
               CustomLoading.cancelLoading();
-
               await firestore.collection('employees').add({
                 'name': nameController.text,
                 'password': passController.text,

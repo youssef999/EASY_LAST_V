@@ -75,12 +75,20 @@ List<String>catList=[];
 List<Map<String,dynamic>>freelancerData=[];
 
 getFreelancerData() async{
-    final box=GetStorage();
 
-  print("FREELANCER........XXX......");
+    final box=GetStorage();
+     //  box.write('empType', 'offline');
+
+     String type=box.read('empType')??"online";
+
+     print("TYPEEEEE==="+type);
+
+     if(type=='online'){
+     print("FREELANCER........XXX......");
 
   String email=box.read('email')??'';
 
+  String roleId=box.read('');
   freelancerData = [];
 
   QuerySnapshot querySnapshot =
@@ -106,6 +114,40 @@ getFreelancerData() async{
 
   print("FFFDATAAAAAAAA==$freelancerData");
   update();
+     }else{
+
+
+print("FREELANCER........XXX......");
+
+  String email=box.read('email')??'';
+
+
+  freelancerData = [];
+  QuerySnapshot querySnapshot =
+  await FirebaseFirestore.instance.collection('employees')
+      .where('email',isEqualTo:email)
+      .get();
+  try {
+    List<Map<String, dynamic>> data = querySnapshot.docs
+        .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+        .toList();
+    freelancerData = data;
+
+  } catch (e) {
+    // ignore: avoid_print
+    print("E.......");
+    // ignore: avoid_print
+    print(e);
+    // orderState='error';
+    // ignore: avoid_print
+    print("E.......");
+  }
+  print("FFFDATAAAAAAAA==$freelancerData");
+  update();
+
+     }
+
+  
 }
 
 
@@ -277,9 +319,9 @@ await FirebaseFirestore.instance.collection('services')
     'price':servicePriceController.text,
     'cat':selectedCategory,
     'freelancer_email':freelancer_email,
-     'freelancer_image':freelancerData[0]['image'],
+     'freelancer_image':freelancerData[0]['image'].toString(),
      //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4i_rii7NjuzWcPQgmVtyAsckGk-YPxgrDgwGQlC772A&s',
-     'freelancer_name':freelancerData[0]['name'],
+     'freelancer_name':freelancerData[0]['name'].toString(),
      'type':'top',
     'comment':[],
     'rate':[],

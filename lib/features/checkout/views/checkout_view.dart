@@ -18,8 +18,6 @@ import 'package:get/get.dart';
 class CheckOutView extends StatefulWidget {
 
  DocumentSnapshot data;
-
-
   CheckOutView({super.key,required this.data});
 
   @override
@@ -39,7 +37,6 @@ class _CheckOutViewState extends State<CheckOutView> {
 
   @override
   Widget build(BuildContext context) {
-
     return
       Scaffold(
       appBar:CustomAppBar(widget.data['name'], context, false),
@@ -48,8 +45,7 @@ class _CheckOutViewState extends State<CheckOutView> {
         child: ListView(children: [
           Column(children: [
            
-            Custom_Text(text: widget.data['name'],
-            
+            Custom_Text(text: widget.data['name'], 
             color:AppColors.textColorDark,fontSize: 25,
             fontWeight:FontWeight.bold,
             ),
@@ -58,17 +54,13 @@ class _CheckOutViewState extends State<CheckOutView> {
           
 
              Custom_Text(text: 'mustDealSellerBeforeBuy'.tr,
-          
             color:AppColors.textColorGreyMode,fontSize: 16,
             fontWeight:FontWeight.w500,
             ),
 
-
-
             const SizedBox(height: 30,),
           
           Row(
-           
             children: [
                const SizedBox(width: 20,),
               Custom_Text(text: 'startFrom'.tr,fontWeight:FontWeight.w700,),
