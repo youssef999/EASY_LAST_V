@@ -25,7 +25,6 @@ String roleId='';
      const AllChatsView(),
      const MyOrderView(),
      const ProfileView(),
-
   ];
 
   @override

@@ -13,7 +13,6 @@ import 'package:freelancerApp/features/root/view/root_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../routes/app_routes.dart';
 
 class AddServiceController extends GetxController {

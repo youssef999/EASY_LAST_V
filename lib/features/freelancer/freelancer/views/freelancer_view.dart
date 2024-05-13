@@ -25,6 +25,7 @@ class FreelancerView extends StatefulWidget {
 
 class _FreelancerViewState extends State<FreelancerView> {
   FreelancerController controller = Get.put(FreelancerController());
+
   @override
   void initState() {
     controller.getFreelancerData();
@@ -34,7 +35,7 @@ class _FreelancerViewState extends State<FreelancerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('profile'.tr, context, true),
+      appBar: CustomAppBar('profilexx'.tr, context, true),
     
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -68,9 +69,9 @@ class _FreelancerViewState extends State<FreelancerView> {
     }
     FreelancerController controller = Get.put(FreelancerController());
     return SizedBox(
-      // height:500,
+       height:900,
       child: ListView.builder(
-          shrinkWrap: true,
+          //shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: controller.freelancerData.length,
           itemBuilder: ((context, index) {
@@ -102,20 +103,22 @@ class _FreelancerViewState extends State<FreelancerView> {
                     Stack(
                       children: [
                         const ReviewFreelance(),
-                        Positioned(
-                            top: 80,
-                            left: 160,
-                            child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: AppColors.mainly,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: IconButton(
-                                    onPressed: () {
 
-                                      Get.to(const AddPortfolio());
-                                    },
-                                    icon: const Icon(Icons.add))))
+                            Padding(
+                              padding: const EdgeInsets.only(top:80.0,
+                              left: 160
+                              ),
+                              child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.mainly,
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: IconButton(
+                                      onPressed: () {
+                                        Get.to(const AddPortfolio());
+                                      },
+                                      icon: const Icon(Icons.add))),
+                            )
                       ],
                     ),
                     const SizedBox(
@@ -416,7 +419,6 @@ class _FreelancerViewState extends State<FreelancerView> {
             ),
             onTap: () {
               // Get.toNamed(Routes.SERVICEDETAILS,arguments:controller.freelancerServicesList );
-
               Get.to(ShowServiceDetails(
                 data: controller.freelancerServicesList[index],
               ));

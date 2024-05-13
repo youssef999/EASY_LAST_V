@@ -15,6 +15,7 @@ import 'package:get_storage/get_storage.dart';
 import 'features/home/views/all_services.dart';
 
   void main() async {
+    
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
@@ -53,7 +54,9 @@ class _MainAppState extends State<MainApp> {
   String? token='';
 
   Future<void> fetchTokens() async {
+    
     print("TOKENSSSSS");
+
     try {
       QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('tokens').get();
@@ -76,7 +79,6 @@ class _MainAppState extends State<MainApp> {
       print("Error fetching data: $error");
     }
   }
-
 
   getToken() async{
 

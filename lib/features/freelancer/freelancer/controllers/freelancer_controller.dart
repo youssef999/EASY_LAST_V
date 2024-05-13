@@ -72,7 +72,6 @@ filterComment(){
     }else{
       type='freelancers';
     }
-
     freelancerData = [];
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection(type)
