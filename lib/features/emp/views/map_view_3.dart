@@ -23,8 +23,6 @@ class MapViewSelect2 extends GetView<MapController> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return  Scaffold(
       appBar: CustomAppBar('enterPlace'.tr, context,false),
       floatingActionButton: Column(

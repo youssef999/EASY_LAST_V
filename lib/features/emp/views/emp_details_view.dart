@@ -32,8 +32,6 @@ class EmpDetailsView extends StatelessWidget {
         Get.to(EmpCheckoutView(
           data: emp,
         ));
-
-
         //Get.toNamed(Routes.CART);
       }, 'buyService'.tr, AppColors.primary),
       body: Padding(

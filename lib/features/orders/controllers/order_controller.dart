@@ -16,7 +16,6 @@ getUserOrders()async{
   final box=GetStorage();
   String email=box.read('email')??''; 
  orderList=[];
-
 QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('orders')
@@ -28,7 +27,6 @@ QuerySnapshot querySnapshot =
         = querySnapshot.docs.map((DocumentSnapshot doc) =>
         doc.data() as Map<String, dynamic>).toList();
       orderList=data;
-     
       }catch(e){
         // ignore: avoid_print
         print("E.......");

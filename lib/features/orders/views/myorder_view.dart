@@ -114,7 +114,6 @@ Widget UserOrderWidget(){
                     padding: const EdgeInsets.all(8.0),
                     child: Custom_Text(
                         text: status,
-
                         // controller.orderList[index]['status'],
                         fontSize: 25,
                         fontWeight: FontWeight.w900,
@@ -139,13 +138,11 @@ Widget UserOrderWidget(){
                       fontSize: 15,
                       color: Colors.black,
                     ),
-
-                    // Custom_Text(
-                    //   text: controller.orderList[index]['freelancer_name']??'',
-                    //   fontSize: 15,
-                    //   color: Colors.black,
-                    // ),
-
+                    Custom_Text(
+                      text: controller.orderList[index]['freelancer_name']??'',
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
                   ],
                 ),
                 const SizedBox(

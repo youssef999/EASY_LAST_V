@@ -15,6 +15,8 @@ class MyLocal implements Translations{
 
           "serviceName":"اسم الخدمة",
 
+          "payNow2":"قم بالدفع الان ",
+
           "itemDelete":"تم الحذف",
 
           "weWillSendYouAnEmail":"سوف نرسل لك بريد الإلكتروني",
@@ -212,6 +214,9 @@ class MyLocal implements Translations{
              "cancel":"الغاء",
 
               "canceled":"تم الغاء الطلب",
+
+
+          "payNow3":"هذه الخدمة يتم دفعها الي مقدم الخدمة بشكل يدوي بعد إنهاء العمل المحدد",
 
              "pending":"جاري التنفيذ",
              "chat":"الدردشة",
@@ -440,6 +445,8 @@ We place great importance on the privacy of our users. No personal data is colle
 
               "canceled":"Order Canceled",
 
+          "payNow2":"Pay Now  ",
+
                "makeComment":"Make Comment",
 
                 "emailUsed":"This Email Is Is Used Before",
@@ -473,6 +480,8 @@ We place great importance on the privacy of our users. No personal data is colle
             "isEdit":"Changes to the deal have been sent",
 
           "camera":"Camera ",
+
+          "payNow3":"This service is paid to the service provider manually after completing the specified work",
 
           "gallery":"Gallery",
 
@@ -700,6 +709,10 @@ Proudly made in Algeria
 
              "finish":"Finition",
 
+        "payNow3":
+        "Ce service est payé manuellement au prestataire de services après avoir terminé le travail spécifié.",
+
+
 
 
 //         "privX":'''
@@ -746,6 +759,9 @@ Proudly made in Algeria
               "canceled":"Commande annulée",
 
                "makeComment":"Faire un commentaire",
+
+        "payNow2":"payez maintenant",
+
 
 
            "allServices":"Tous les services",

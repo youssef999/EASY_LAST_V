@@ -14,7 +14,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'features/home/views/all_services.dart';
 
-  void main() async {
+
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
@@ -50,7 +52,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
 
-  List<Map<String, dynamic>> tokenList = [];
+List<Map<String, dynamic>> tokenList = [];
   String? token='';
 
   Future<void> fetchTokens() async {
@@ -97,7 +99,6 @@ class _MainAppState extends State<MainApp> {
       addTokenToFireBase();
     }
   }
-
 
   addTokenToFireBase() async {
 
@@ -205,7 +206,6 @@ class _MainAppState extends State<MainApp> {
     }
   }
 }
-
 
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 

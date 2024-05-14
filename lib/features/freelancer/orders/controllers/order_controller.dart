@@ -37,7 +37,6 @@ getFreelancerOrders() async{
   final box=GetStorage();
 
   String email=box.read('email')??'';
-
     orderList= [];
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('orders')
@@ -66,7 +65,6 @@ getFreelancerOrders() async{
 
 
   openLocation(double lat,double lng)async{
-
     final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
     if (await canLaunch(url)) {
       await launch(url);

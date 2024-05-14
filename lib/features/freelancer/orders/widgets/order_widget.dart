@@ -87,21 +87,46 @@ class OrderCardWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
 
+
                   const SizedBox(height: 7,),
 
-                  (locationName.length>1
-                  && lat.length>1&&lng.length>1
+                  ( data['location'].toString().length>1
+                  &&  data['lat'].toString().length>1&& data['lng'].toString().length>1
                   )?
                   Row(
+                   // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                     children: [
-                      Custom_Text(text: locationName.toString(),
-                      fontSize:16,color:AppColors.textColorDark,
-                
+                      Row(
+                        children: [
+                          IconButton(onPressed: (){
+                            controller.openLocation(double.parse(
+                                data['lat']
+                            )
+                                , double.parse(data['lng']));
+                          }, icon:  Icon(Icons.location_on,
+                          color:AppColors.primary,
+                          size: 35,
+                          )),
+                          SizedBox(width: 10,),
+                          Custom_Text(text: data['location'],
+                            fontSize:19,color:AppColors.textColorDark,
+                            fontWeight:FontWeight.w700,
+                          ),
+                        ],
                       ),
+
+
+
                       IconButton(onPressed: (){
-                        controller.openLocation(double.parse(lat)
-                        , double.parse(lng));
-                      }, icon: const Icon(Icons.location_on))
+                        controller.openLocation(double.parse(
+                            data['lat'].toString()
+                        )
+                            , double.parse(data['lng'].toString()));
+                      }, icon:  Icon(Icons.navigate_next_outlined,
+                        color:AppColors.primary,
+                        size: 35,
+                      )),
+
 
 
                     ],
@@ -113,6 +138,8 @@ class OrderCardWidget extends StatelessWidget {
                   (data['client_name'].toString().length>1)?
                    sampleCardData('from'.tr,data['client_name'].toString()):
                   const SizedBox(),
+
+                  (data['order_des'].toString().length>1)?
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Row(
@@ -127,7 +154,8 @@ class OrderCardWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
+                  ):const SizedBox(),
+
                   const SizedBox(
                     height: 7,
                   ),

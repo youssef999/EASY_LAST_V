@@ -153,8 +153,8 @@ String type='users';
   QuerySnapshot querySnapshot =
   await FirebaseFirestore.instance.collection
     ('freelancers').where('email',isEqualTo: freelancerEmail).get();
-  try{
 
+  try{
     List<Map<String, dynamic>> data
     = querySnapshot.docs.map((DocumentSnapshot doc) =>
     doc.data() as Map<String, dynamic>).toList();
@@ -195,7 +195,7 @@ String type='users';
   update();
 }
 
-    addOrderToFirebase(DocumentSnapshot data)async{
+addOrderToFirebase(DocumentSnapshot data)async{
 
  NotificationController notificationController=Get.put(NotificationController());
 
@@ -230,6 +230,8 @@ String type='users';
   'freelancer_name': data['freelancer_name'],
   
   'service_image':data['image'],
+
+   "type":"online",
 
   'order_des':desController.text,
 
@@ -273,7 +275,7 @@ String type='users';
   }
 }
 
-    addOrderToFirebase2(Map<String,dynamic> data)async{
+addOrderToFirebase2(Map<String,dynamic> data)async{
 
   final box=GetStorage();
 
@@ -308,11 +310,13 @@ NotificationController notificationController=Get.put(NotificationController());
 
       'date':formattedDate,
       //DateTime.now().toString()
-      "freelancer_email":data['freelancer_email'],
+      "freelancer_email":data['freelancer_email'].toString(),
 
-      'freelancer_name': data['freelancer_name'],
+      'freelancer_name': data['freelancer_name'].toString(),
 
       'service_image':data['image'],
+
+      "type":"online",
 
       'location':locationName,
 
@@ -347,7 +351,7 @@ NotificationController notificationController=Get.put(NotificationController());
 
       notificationController.sendNotificationNow
         (token: token, type: '', title: data['name'].toString(),
-          body:data['freelancer_name']);
+          body:data['freelancer_name'].toString());
 
       Get.offAll(RootView());
       // Get.toNamed('/bottomBar');
@@ -357,7 +361,98 @@ NotificationController notificationController=Get.put(NotificationController());
     update();
     // ignore: avoid_print, prefer_interpolation_to_compose_strings
     print("EEE=="+e.toString());
-    appMessage(text: "Can't Add Item Now",fail: true);
+   // appMessage(text: "Can't Add Item Now",fail: true);
+  }
+}
+
+
+addEmpOrderToFireStore(Map<String,dynamic> data)async{
+
+  final box=GetStorage();
+
+  String locationName= box.read('location').toString();
+
+
+  var lat = box.read('lat') ?? '';
+  var lng = box.read('lng') ?? '';
+
+  NotificationController notificationController=Get.put(NotificationController());
+
+  String email=box.read('email')??'';
+
+  const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
+  Random random = Random();
+  String result = '';
+  DateTime now = DateTime.now();
+
+  //String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  for (int i = 0; i < 12; i++) {
+    result += chars[random.nextInt(chars.length)];
+  }
+
+  try{
+
+    await FirebaseFirestore.instance.collection('orders').doc(result)
+        .set({
+
+      'service_name':data['name'].toString(),
+
+      'date':formattedDate,
+      //DateTime.now().toString()
+      "freelancer_email":data['email'].toString(),
+
+      'freelancer_name': data['name'].toString(),
+
+      'service_image':data['image'],
+
+      'location':locationName,
+
+      "type":"offline",
+
+      'lat':lat,
+
+      'lng':lng,
+
+      'order_des':desController.text,
+
+      'client_name':userName,
+
+      'client_email':email,
+
+      'service_price':priceController.text,
+
+      'notes':notesController.text,
+
+      'notes2':'',
+
+      'task_time':timeController.text,
+
+      'id':result,
+
+      'order_status':'pending',
+
+    }).then((value) {
+      isLoading=true;
+      update();
+      // ignore: avoid_print
+      print("DONE");
+      appMessage(text: 'dealSent'.tr,fail: false);
+
+      notificationController.sendNotificationNow
+        (token: token, type: '', title: data['name'].toString(),
+          body:data['name'].toString());
+
+      Get.offAll(RootView());
+      // Get.toNamed('/bottomBar');
+    });
+  } catch(e){
+    isLoading=false;
+    update();
+    // ignore: avoid_print, prefer_interpolation_to_compose_strings
+    print("EEE=="+e.toString());
+    // appMessage(text: "Can't Add Item Now",fail: true);
   }
 }
 

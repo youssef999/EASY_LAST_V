@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:freelancerApp/core/const/constant.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
 import 'package:freelancerApp/core/widgets/Custom_Text.dart';
 import 'package:freelancerApp/core/widgets/Custom_button.dart';
@@ -51,7 +52,28 @@ TaskDoneController controller=Get.put(TaskDoneController());
                 fontWeight:FontWeight.bold,
                 ),
               ),
-            
+              const SizedBox(height: 6,),
+              (widget.data['type']=='offline')?
+              Column(
+                children: [
+                  Custom_Text(text: 'payNow2'.tr,
+                  color:AppColors.primary,fontSize: 19,
+                  ),
+                  const SizedBox(height: 2,),
+                  Custom_Text(text: 'payNow3'.tr,
+                    color:Colors.grey,fontSize: 15,
+                  ),
+                  const SizedBox(height: 6,),
+                  Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Custom_Text(text: widget.data['service_price'].toString()+
+                      " "+currency,
+                      color:AppColors.textColorDark,fontSize: 19,
+                      fontWeight:FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ):const SizedBox(),
               const SizedBox(height: 32,),
               Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -71,8 +93,6 @@ TaskDoneController controller=Get.put(TaskDoneController());
                     widget.data
                     );
 
-                   
-                            
                    });
                    }
                   ),
@@ -91,10 +111,7 @@ TaskDoneController controller=Get.put(TaskDoneController());
                    })
                 ],),
               ),
-            
-            
-            
-              
+
             ]);
           }
         ),

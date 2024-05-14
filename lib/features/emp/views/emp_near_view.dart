@@ -43,7 +43,6 @@ HomeController controller=Get.put(HomeController());
   }
 
   Widget EmpWidget(){
-
     return GetBuilder<HomeController>(
         builder: (_) {
           return GridView.builder(

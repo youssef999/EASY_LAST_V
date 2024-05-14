@@ -22,8 +22,6 @@ class _OrderRequestViewState extends State<OrderRequestView> {
 
   @override
   void initState() {
-
-
     super.initState();
   }
 

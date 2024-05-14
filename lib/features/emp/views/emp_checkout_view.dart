@@ -38,22 +38,12 @@ class _CheckOutViewState extends State<EmpCheckoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: AppColors.whiteColor,
       appBar: CustomAppBar( widget.data['name'].toString(), context, false),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(children: [
           const SizedBox(height: 10,),
-          // Center(
-          //   child: Custom_Text(
-          //     text: widget.data['name'],
-          //     color: AppColors.textColorDark,
-          //     fontSize: 20,
-              
-          //     fontWeight: FontWeight.bold,
-          //   ),
-          // ),
           const SizedBox(
             height: 15,
           ),
@@ -187,7 +177,8 @@ class _CheckOutViewState extends State<EmpCheckoutView> {
             child: CustomButton(
                 text: 'sendOffer'.tr,
                 onPressed: () {
-                 controller.addOrderToFirebase2(widget.data);
+                  print("data====="+widget.data.toString());
+                 controller.addEmpOrderToFireStore(widget.data);
                 }),
           ),
          
