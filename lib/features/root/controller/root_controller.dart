@@ -19,7 +19,6 @@ class RootController extends GetxController {
 
 String roleId='';
 
-
   List page = [
      HomeView(),
      const AllChatsView(),

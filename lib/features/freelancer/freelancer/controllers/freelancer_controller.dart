@@ -64,7 +64,7 @@ filterComment(){
     freelancerImage=[];
    print("FREELNACER........XXX......");
     String email=box.read('email')??'';
-    String empType=box.read("empType");
+    String empType=box.read("empType")??"offline";
     String type='freelancers';
 
     if(empType=='offline'){

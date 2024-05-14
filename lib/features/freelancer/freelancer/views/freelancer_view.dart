@@ -35,7 +35,7 @@ class _FreelancerViewState extends State<FreelancerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('profilexx'.tr, context, true),
+      appBar: CustomAppBar('profile'.tr, context, true),
     
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -104,10 +104,12 @@ class _FreelancerViewState extends State<FreelancerView> {
                       children: [
                         const ReviewFreelance(),
 
-                            Padding(
-                              padding: const EdgeInsets.only(top:80.0,
-                              left: 160
-                              ),
+                            Positioned(
+                              top: 80,
+                              left: 160,
+                              // padding: const EdgeInsets.only(top:80.0,
+                              // left: 160
+                              // ),
                               child: Container(
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
@@ -143,7 +145,7 @@ class _FreelancerViewState extends State<FreelancerView> {
                               width: 10,
                             ),
                             Custom_Text(
-                              text: controller.freelancerData[index][cat],
+                              text: controller.freelancerData[index][cat]??"",
                               fontSize: 18,
                               color: AppColors.primary,
                               fontWeight: FontWeight.w800,
@@ -156,6 +158,7 @@ class _FreelancerViewState extends State<FreelancerView> {
                     const SizedBox(
                       height: 12,
                     ),
+
                     Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),

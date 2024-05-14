@@ -15,7 +15,6 @@ import 'package:get_storage/get_storage.dart';
 import 'features/home/views/all_services.dart';
 
   void main() async {
-    
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
@@ -27,11 +26,11 @@ import 'features/home/views/all_services.dart';
         channelName: 'Basic notifications',
         channelDescription: 'notification chanel for testing')
   ]);
-
   final box=GetStorage();
   String keylocal = box.read('locale')??'x';///en //ar //' '
   ///
   Locale lang = const Locale('ar');
+
   if(keylocal!='x'){
     lang=Locale(keylocal);
   }
@@ -39,6 +38,7 @@ import 'features/home/views/all_services.dart';
     box.write('locale','ar');
   }
   runApp(const MainApp());
+
 }
 
 class MainApp extends StatefulWidget {
@@ -54,9 +54,7 @@ class _MainAppState extends State<MainApp> {
   String? token='';
 
   Future<void> fetchTokens() async {
-    
     print("TOKENSSSSS");
-
     try {
       QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('tokens').get();
@@ -136,7 +134,6 @@ class _MainAppState extends State<MainApp> {
       print('xx');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
