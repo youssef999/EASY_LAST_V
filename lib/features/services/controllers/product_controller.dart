@@ -12,7 +12,6 @@ class ProductController extends GetxController {
   CarouselSliderController sliderController = CarouselSliderController();
   String index = '';
   String clr = '';
-
   QueryDocumentSnapshot<Object?>? posts;
 
   List<DocumentSnapshot> searchResults = [];
@@ -30,11 +29,41 @@ class ProductController extends GetxController {
   void onInit() async {
     posts = Get.arguments;
     super.onInit();
-    getServiceRate();
+
 
   }
   double finalRate=0;
-  getServiceRate(){
+
+ List<Map<String,dynamic>>empData=[];
+
+ getEmpData(String email)async{
+   print("EMP DATA...........");
+   empData=[];
+   QuerySnapshot querySnapshot =
+   await FirebaseFirestore.instance.collection
+     ('employees').where('email',isEqualTo: email).get();
+   try{
+     List<Map<String, dynamic>> data
+     = querySnapshot.docs.map((DocumentSnapshot doc) =>
+     doc.data() as Map<String, dynamic>).toList();
+     empData=data;
+   }catch(e){
+     // ignore: avoid_print
+     print("E.......");
+     // ignore: avoid_print
+     print(e);
+     // orderState='error';
+     // ignore: avoid_print
+     print("E.......");
+   }
+   print('emp===='+empData.toString());
+   update();
+
+ }
+
+
+
+ getServiceRate(){
 
    print(".............SERVICE RATES ........");
    List rateList=posts!['rate'];

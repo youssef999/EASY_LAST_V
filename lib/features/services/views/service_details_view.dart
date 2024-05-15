@@ -9,11 +9,26 @@ import 'package:freelancerApp/features/checkout/views/checkout_view.dart';
 import 'package:freelancerApp/features/services/controllers/product_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../emp/views/emp_checkout_view.dart';
 
-class ServiceDetailsView extends GetView<ProductController> {
+class ServiceDetailsView extends StatefulWidget {
 
   const ServiceDetailsView({super.key});
 
+  @override
+  State<ServiceDetailsView> createState() => _ServiceDetailsViewState();
+}
+
+class _ServiceDetailsViewState extends State<ServiceDetailsView> {
+
+  ProductController controller=Get.put(ProductController());
+  @override
+  void initState() {
+
+     controller. getServiceRate();
+     controller. getEmpData(controller.posts?['freelancer_email']);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,7 +213,18 @@ class ServiceDetailsView extends GetView<ProductController> {
         ),
         bottomSheet: animBtn(() {
 
-                Get.to( CheckOutView(data: controller.posts!));
+
+          if(controller.posts!['empType']=='offline'){
+
+            Get.to(EmpCheckoutView(
+              data: controller.empData[0],
+            ));
+
+          }else{
+            Get.to( CheckOutView(data: controller.posts!));
+          }
+
+
 
           //Get.toNamed(Routes.CART);
         }, 'buyService'.tr, AppColors.primary));

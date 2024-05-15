@@ -77,7 +77,6 @@ getFreelancerData() async{
 
     final box=GetStorage();
      //  box.write('empType', 'offline');
-
      String type=box.read('empType')??"online";
 
      print("TYPEEEEE==="+type);
@@ -291,13 +290,20 @@ print("FREELANCER........XXX......");
 
   addServiceToFireStore()async {
 
+    final box=GetStorage();
+    //  box.write('empType', 'offline');
+    String type=box.read('empType')??"online";
+
+
+    print("TYPE==="+type);
+
   isLoading=true;
 
     update();
 
     print("IMAGEEE=========${downloadUrls[0]}");
 
-    final box=GetStorage();
+   // final box=GetStorage();
     
     String freelancer_email=box.read('email')??'x';
 
@@ -313,6 +319,7 @@ await FirebaseFirestore.instance.collection('services')
 .doc(result)
 .set({
   'serviceId':result,
+  "empType":type,
    'name':serviceNameController.text.capitalize,
    'description':serviceDescriptionController.text,
     'price':servicePriceController.text,

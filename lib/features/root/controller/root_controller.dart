@@ -14,7 +14,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../orders/views/myorder_view.dart';
 
 class RootController extends GetxController {
-
+  
   RxInt selectedIndex = 0.obs;
 
 String roleId='';

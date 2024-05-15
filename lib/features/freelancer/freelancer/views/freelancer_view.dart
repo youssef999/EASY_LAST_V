@@ -36,7 +36,6 @@ class _FreelancerViewState extends State<FreelancerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar('profile'.tr, context, true),
-    
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<FreelancerController>(builder: (_) {

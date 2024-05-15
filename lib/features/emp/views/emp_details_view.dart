@@ -12,7 +12,6 @@ class EmpDetailsView extends StatelessWidget {
 
   EmpDetailsView({super.key, required this.emp});
 
-
   txtT(dynamic txt, String style, double size, FontWeight w, Color color) {
     return Container(
       constraints: const BoxConstraints(maxWidth: double.infinity),
