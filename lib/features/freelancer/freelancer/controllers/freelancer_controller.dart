@@ -59,7 +59,10 @@ filterComment(){
 }
 
 
-  List<String>freelancerImage=[];
+  List freelancerImage=[];
+
+
+
   getFreelancerData()async{
     freelancerImage=[];
    print("FREELNACER........XXX......");
@@ -72,6 +75,7 @@ filterComment(){
     }else{
       type='freelancers';
     }
+
     freelancerData = [];
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection(type)
@@ -86,7 +90,8 @@ filterComment(){
       freelancerData = data;
 
       for(int i=0;i<freelancerData[i]['images'].length;i++){
-        freelancerImage.add(freelancerData[i]['images'][i]);
+        freelancerImage=freelancerData[i]['images'];
+        //freelancerImage.add(freelancerData[i]['images']);
       }
     } catch (e) {
       // ignore: avoid_print
@@ -110,6 +115,7 @@ filterComment(){
   final ImagePicker _picker = ImagePicker();
   bool isLoading = false;
   List<String> downloadUrls = [];
+
  captureImage() async {
     pickedImageXFile = await _picker.pickImage(source: ImageSource.camera);
     Get.back();
@@ -127,12 +133,14 @@ filterComment(){
 
 
   addNewImage() async{
+    isDataLoading=true;
+    update();
+   print("ADD NEW IMAGE....");
 uploadMultiImageToFirebaseStorage(pickedImageXFiles!).then((value) {
-
+ print("DONE....");
   for(int i=0;i<downloadUrls.length;i++){
     freelancerImage.add(downloadUrls[i]);
   }
-
   updateFreelancerData();
 
 });
@@ -148,8 +156,16 @@ void updateBio() async {
   print("freee=="+freelancerImage.length.toString());
   final box=GetStorage();
   String email=box.read('email');
+  String empType=box.read("empType")??"offline";
+  String type='freelancers';
+
+  if(empType=='offline'){
+    type='employees';
+  }else{
+    type='freelancers';
+  }
   final CollectionReference users = FirebaseFirestore.instance
-      .collection('freelancers');
+      .collection(type);
 
   // Create a query to find the user document by email
   QuerySnapshot querySnapshot = await users
@@ -178,14 +194,24 @@ void updateBio() async {
 }
 
 
+bool  isDataLoading=false;
+
 void updateFreelancerData() async {
 
   print("freee=="+freelancerImage.toString());
     print("freee=="+freelancerImage.length.toString());
   final box=GetStorage();
   String email=box.read('email');
+  String empType=box.read("empType")??"offline";
+  String type='freelancers';
+
+  if(empType=='offline'){
+    type='employees';
+  }else{
+    type='freelancers';
+  }
     final CollectionReference users = FirebaseFirestore.instance
-    .collection('freelancers');
+    .collection(type);
 
     // Create a query to find the user document by email
     QuerySnapshot querySnapshot = await users
@@ -202,6 +228,8 @@ void updateFreelancerData() async {
         'images':freelancerImage,
         // Add more fields to update as needed
       }).then((_) {
+        isDataLoading=false;
+        update();
         print('Document successfully updated!');
         appMessage(text: 'changeDone'.tr, fail: false);
         Get.offAllNamed(Routes.ROOT);
@@ -296,7 +324,6 @@ String downloadUrl = '';
 
 
   getFreelancerServices(String email) async {
-
     finalRate=0;
 
     sumRate=0;

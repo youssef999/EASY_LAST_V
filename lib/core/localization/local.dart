@@ -15,6 +15,8 @@ class MyLocal implements Translations{
 
           "serviceName":"اسم الخدمة",
 
+          "change":"تعديل",
+
           "payNow2":"قم بالدفع الان ",
 
           "itemDelete":"تم الحذف",
@@ -351,7 +353,7 @@ class MyLocal implements Translations{
         
         "en":{
 
-
+          "change":"Change",
 
 
            "serviceDone":"Service Done",
@@ -666,6 +668,8 @@ Proudly made in Algeria
         }
 
       ,"fr":{
+
+        "change":"Changement",
 
            "cat":"Catégorie",
 

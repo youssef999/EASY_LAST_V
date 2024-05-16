@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../profile/view/update_city.dart';
 import '../../service/views/freelancer_services.dart';
 import 'change_bio.dart';
 
@@ -197,33 +198,39 @@ class _FreelancerViewState extends State<FreelancerView> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.grey[300]),
-                      child: Padding(
-                        padding: const EdgeInsets.all(11.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Custom_Text(
-                              text: 'city'.tr,
-                              fontSize: 18,
-                              color: AppColors.textColorDark,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Custom_Text(
-                              text: controller.freelancerData[index]['city'],
-                              fontSize: 18,
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ],
+                    InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey[300]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(11.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Custom_Text(
+                                text: 'city'.tr,
+                                fontSize: 18,
+                                color: AppColors.textColorDark,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Custom_Text(
+                                text: controller.freelancerData[index]['city'],
+                                fontSize: 18,
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+                      onTap:(){
+                        Get.to(UpdateCity(data:controller.freelancerData[index] ));
+
+                      },
                     ),
                     const SizedBox(
                       height: 12,

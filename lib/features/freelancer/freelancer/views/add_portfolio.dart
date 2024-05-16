@@ -125,14 +125,21 @@ class _AddPortfolioState extends State<AddPortfolio> {
                                                 //  cubit.showDialogBox(context);
                                               },
                                             ),
-                                            const SizedBox(height: 11,),
-              
-                                            CustomButton(text: 'add'.tr, 
-                                            
-                                            onPressed: (){
-                                              controller.addNewImage();
-              
-                                            })
+                                            Column(
+                                              children: [
+                                                const SizedBox(height: 11,),
+
+                                                (controller.isDataLoading==false)?
+                                                CustomButton(text: 'add'.tr,
+                                                    onPressed: (){
+                                                      controller.addNewImage();
+
+                                                    }):const Center(
+                                                  child: CircularProgressIndicator(),
+                                                )
+                                              ],
+                                            ),
+
                                     ],
                                   ),
             );
