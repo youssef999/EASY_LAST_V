@@ -107,7 +107,7 @@ class OrderCardWidget extends StatelessWidget {
                           color:AppColors.primary,
                           size: 35,
                           )),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Custom_Text(text: data['location'],
                             fontSize:19,color:AppColors.textColorDark,
                             fontWeight:FontWeight.w700,
@@ -169,6 +169,11 @@ class OrderCardWidget extends StatelessWidget {
                   ),
                   sampleCardData(
                       'price'.tr, '${data['service_price']} $currency'),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  sampleCardData(
+                      'notes'.tr, '${data['notes']} $currency'),
                   const SizedBox(
                     height: 7,
                   ),

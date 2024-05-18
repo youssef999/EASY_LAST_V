@@ -196,6 +196,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 },
               )
             : const SizedBox(),
+        //
+        // (roleId == '2')
+        //     ? _drawerTileWidget(
+        //   icon: 'assets/icon/kyc_verification.svg',
+        //   title: 'moneyData'.tr,
+        //   onTap: () {
+        //    // Get.to(const FreelancerServicesView());
+        //   },
+        // )
+        //     : const SizedBox(),
+
 
         // (roleId == '2')
         //     ? _drawerTileWidget(
@@ -222,9 +233,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           icon: 'assets/icon/drawer_menu.svg',
           title: 'myOrders'.tr,
           onTap: () {
-
             Get.to(const MyOrderView());
-            // Get.to(const ChatView());
           },
         ),
         _drawerTileWidget(

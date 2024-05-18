@@ -653,6 +653,34 @@ class AuthController extends GetxController {
     }
   }
 
+
+
+  addUserToWallet() async{
+    const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
+    Random random = Random();
+    String result = '';
+    for (int i = 0; i < 12; i++) {
+      result += chars[random.nextInt(chars.length)];
+    }
+
+    try{
+      await FirebaseFirestore.instance.collection('wallet')
+          .doc(result)
+          .set({
+        'email':emailController.text,
+        'balance':0
+      }).then((value) {
+      });
+    }catch(e){
+      isLoading=false;
+      update();
+      // ignore: avoid_print
+      print(e);
+    }
+
+  }
+
+
   userSignUp() async {
     final userId = FirebaseAuth.instance.currentUser;
     // loading = true;
@@ -688,6 +716,7 @@ class AuthController extends GetxController {
           } else {
             if (empType == 'online'.tr) {
               box.write('empType', 'online');
+              addUserToWallet();
               await firestore.collection('freelancers').add({
                 'name': nameController.text,
                 'password': passController.text,

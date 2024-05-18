@@ -133,7 +133,6 @@ TextEditingController commentController=TextEditingController();
                // order done that add new balance to the wallet
                // update order status
 
-
                 //update rate and comment to the service
                 updateServiceRate(data['service_image']).then((value) {
 
@@ -143,7 +142,7 @@ TextEditingController commentController=TextEditingController();
 
 
                     // update order status
-               updateOrderStatus(data['id'], 'Done');
+               updateOrderStatus(data['id'],'Done');
 
 
                 });
@@ -168,9 +167,7 @@ TextEditingController commentController=TextEditingController();
   getFreelancerBalance(String email)async{
 
    print("freelanceing20202020");
-   
    freelancerTotalBalance=0;
-
    QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('wallet').where('email',isEqualTo: email)
@@ -200,12 +197,18 @@ TextEditingController commentController=TextEditingController();
 
   orderDone(String email,String price) async {
 
+    print("price==="+price);
+    print("/////////");
+    print(email);
+    print("/////////");
+
+
  print("totalBALANCE===$freelancerTotalBalance");
 
  int newBalance = int.parse(price)+freelancerTotalBalance;
- 
+
+    print("price==="+newBalance.toString());
   CollectionReference wallet =FirebaseFirestore.instance.collection('wallet');
-      
       // Update data where a specific condition is met
       await wallet
           .where('email', isEqualTo: email) // Example where clause: age is less than 30
@@ -220,7 +223,7 @@ TextEditingController commentController=TextEditingController();
       });
       
       print('Data updated successfully');
-       
+
  }
 
 
@@ -314,22 +317,23 @@ TextEditingController commentController=TextEditingController();
 
 
     getServiceCommentAndRate(serviceImage)async {
- print("UPDATE........99302..");
-
-
+     print("UPDATE........99302.......");
+     //services
+     print("SER=="+serviceImage);
+     print("////////");
      QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('services').where('image',isEqualTo: serviceImage)
         .get();
-
       try{
         List<Map<String, dynamic>> data
         = querySnapshot.docs.map((DocumentSnapshot doc) =>
         doc.data() as Map<String, dynamic>).toList();
 
         print("data==$data");
-   
+
     commentList=data[0]['comments'];
+
     rateList=data[0]['rate'];
       // ignore: duplicate_ignore, duplicate_ignore, duplicate_ignore
       }catch(e){

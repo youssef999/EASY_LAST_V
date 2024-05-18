@@ -25,10 +25,8 @@ TaskDoneController controller=Get.put(TaskDoneController());
 
  @override
   void initState() {
-    
+    print("data======"+widget.data.toString());
     controller.getServiceCommentAndRate(widget.data['service_image']);
-
-
     super.initState();
   }
 
@@ -103,7 +101,6 @@ TaskDoneController controller=Get.put(TaskDoneController());
                     color2:AppColors.textColorLight,
                     text: 'no'.tr,
                    onPressed: (){
-
                     controller.noShowDialog(context,
                     widget.data
                     );

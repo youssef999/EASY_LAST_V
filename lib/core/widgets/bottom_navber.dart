@@ -40,6 +40,7 @@ buildBottomNavigationMenu(context, bottomNavBarController) {
                 AppColors.transparent),
 
 
+
             bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 3,
                 AppColors.whiteColor.withOpacity(0.1)),
 
@@ -84,7 +85,10 @@ buildBottomNavigationMenu(context, bottomNavBarController) {
             bottomItemWidget('assets/icon/details.svg', bottomNavBarController, 3,
                 AppColors.transparent),
 
-bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 4,
+            bottomItemWidget('assets/icon/my_wallet.svg', bottomNavBarController, 4,
+                AppColors.transparent),
+
+bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 5,
                 AppColors.whiteColor.withOpacity(0.1)),
 
 

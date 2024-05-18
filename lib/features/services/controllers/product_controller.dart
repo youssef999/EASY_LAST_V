@@ -61,10 +61,36 @@ class ProductController extends GetxController {
 
  }
 
+  List<Map<String,dynamic>>empServices=[];
 
+
+ getEmpService(String email)async{
+  print("FREELANCING...........................");
+  print('EMAILLL===='+email);
+   empServices=[];
+   QuerySnapshot querySnapshot =
+   await FirebaseFirestore.instance.collection
+     ('services').where('freelancer_email',isEqualTo:email).get();
+   try{
+     List<Map<String, dynamic>> data
+     = querySnapshot.docs.map((DocumentSnapshot doc) =>
+     doc.data() as Map<String, dynamic>).toList();
+     empServices=data;
+   }catch(e){
+     // ignore: avoid_print
+     print("E.......");
+     // ignore: avoid_print
+     print(e);
+     // orderState='error';
+     // ignore: avoid_print
+     print("E.......");
+   }
+   print("EMPPPPP=========="+empServices.toString());
+
+   update();
+ }
 
  getServiceRate(){
-
    print(".............SERVICE RATES ........");
    List rateList=posts!['rate'];
    num rateValue=0;
@@ -78,6 +104,9 @@ class ProductController extends GetxController {
    print("Final=====$finalRate");
    update();
   }
+
+
+
 
 
 

@@ -365,13 +365,13 @@ NotificationController notificationController=Get.put(NotificationController());
   }
 }
 
+addEmpOrderToFireStore2(DocumentSnapshot data)async{
 
-addEmpOrderToFireStore(Map<String,dynamic> data)async{
-
+      print("DATASERRRRR====="+data.toString());
+      print("DATASERRRRR====="+data['name'].toString());
   final box=GetStorage();
 
   String locationName= box.read('location').toString();
-
 
   var lat = box.read('lat') ?? '';
   var lng = box.read('lng') ?? '';
@@ -398,7 +398,93 @@ addEmpOrderToFireStore(Map<String,dynamic> data)async{
         .set({
 
       'service_name':data['name'].toString(),
+      'date':formattedDate,
+      //DateTime.now().toString()
+      "freelancer_email":data['freelancer_email'].toString(),
 
+      'freelancer_name': data['freelancer_name'].toString(),
+
+      'service_image':data['image'],
+
+      'location':locationName,
+
+      "type":"offline",
+
+      'lat':lat,
+
+      'lng':lng,
+
+      'order_des':desController.text,
+
+      'client_name':userName,
+
+      'client_email':email,
+
+      'service_price':priceController.text,
+
+      'notes':notesController.text,
+
+      'notes2':'',
+
+      'task_time':timeController.text,
+
+      'id':result,
+
+      'order_status':'pending',
+
+    }).then((value) {
+      isLoading=true;
+      update();
+      // ignore: avoid_print
+      print("DONE");
+      appMessage(text: 'dealSent'.tr,fail: false);
+
+      notificationController.sendNotificationNow
+        (token: token, type: '', title: data['name'].toString(),
+          body:data['name'].toString());
+
+      Get.offAll(RootView());
+      // Get.toNamed('/bottomBar');
+    });
+  } catch(e){
+    isLoading=false;
+    update();
+    // ignore: avoid_print, prefer_interpolation_to_compose_strings
+    print("EEE=="+e.toString());
+    // appMessage(text: "Can't Add Item Now",fail: true);
+  }
+}
+
+addEmpOrderToFireStore(Map<String,dynamic> data)async{
+  final box=GetStorage();
+
+  String locationName= box.read('location').toString();
+
+  var lat = box.read('lat') ?? '';
+  var lng = box.read('lng') ?? '';
+
+  NotificationController notificationController=Get.put(NotificationController());
+
+  String email=box.read('email')??'';
+
+  const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
+  Random random = Random();
+  String result = '';
+  DateTime now = DateTime.now();
+
+  //String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  for (int i = 0; i < 12; i++) {
+    result += chars[random.nextInt(chars.length)];
+  }
+
+  try{
+
+    await FirebaseFirestore.instance.collection('orders').doc(result)
+        .set({
+
+      'service_name':data['name'].toString(),
       'date':formattedDate,
       //DateTime.now().toString()
       "freelancer_email":data['email'].toString(),

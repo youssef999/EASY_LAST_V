@@ -11,6 +11,7 @@ import 'package:freelancerApp/features/root/view/third.dart';
 import 'package:freelancerApp/features/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import '../../freelancer/money/emp_money.dart';
 import '../../orders/views/myorder_view.dart';
 
 class RootController extends GetxController {
@@ -51,7 +52,9 @@ String roleId='';
       const FreelancerServicesView(),
     //  const AddServicesView(),
      const OrderRequestView(),
+      const EmpMoney(),
      const FreelancerView(),
+
     //  const SettingsView(),
     ];
   }

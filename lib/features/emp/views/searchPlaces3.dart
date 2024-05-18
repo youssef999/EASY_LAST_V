@@ -18,16 +18,18 @@ import '../../../../core/widgets/Custom_button.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../map_controller.dart';
 import '../../predict_places.dart';
+import 'emp_map_service.dart';
 
 
 // ignore: must_be_immutable
-class SearchPlacesView2 extends StatefulWidget
+class SearchPlacesView3 extends StatefulWidget
 
 
 
 {
   Map<String,dynamic>data;
-   SearchPlacesView2({super.key,required this.data});
+  DocumentSnapshot data2;
+  SearchPlacesView3({super.key,required this.data,required this.data2});
   @override
   // ignore: library_private_types_in_public_api
   _SearchPlacesScreenState createState() => _SearchPlacesScreenState();
@@ -35,7 +37,7 @@ class SearchPlacesView2 extends StatefulWidget
 
 TextEditingController searchController=TextEditingController();
 
-class _SearchPlacesScreenState extends State<SearchPlacesView2>
+class _SearchPlacesScreenState extends State<SearchPlacesView3>
 {
   List<PredictedPlaces> placesPredictedList = [];
 
@@ -43,7 +45,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesView2>
 
   String mapKey=
   // 'AIzaSyCKckCh7RP4ezDtY4F2m5CEV0Y8tfntDFk';
-'AIzaSyCdLsB9Sjir6fW0ZjJ1mksJvxMrRIZR7d4';
+      'AIzaSyCdLsB9Sjir6fW0ZjJ1mksJvxMrRIZR7d4';
 
   @override
   void dispose() {
@@ -63,15 +65,12 @@ class _SearchPlacesScreenState extends State<SearchPlacesView2>
             text: 'next'.tr,
             onPressed: (){
               if(searchController.text.length>2){
-
-                Get.to(  MapViewSelect2(data: widget.data,
-
+                Get.to(  MapViewSelect3(data: widget.data,
+                  data2: widget.data2,
                 ));
-                
                 final box = GetStorage();
                 box.write('location',searchController.text);
               }
-          
               else{
                 appMessage(text: 'enterPlace'.tr, fail: true);
               }
@@ -209,7 +208,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesView2>
         setState(() {
           placesPredictedList = placePredictionsList;
         });
-        
+
         print("//////////.......................");
         print(placesPredictedList.first.main_text.toString());
         print(placesPredictedList.first.place_id.toString());

@@ -15,6 +15,10 @@ class MyLocal implements Translations{
 
           "serviceName":"اسم الخدمة",
 
+          "moneyData" : "ارباح متوقعة من الطلبات ",
+
+          "moneyData2" : " للادمن فقط  ",
+
           "change":"تعديل",
 
           "payNow2":"قم بالدفع الان ",
@@ -344,14 +348,24 @@ class MyLocal implements Translations{
 
           "minRequest":"الحد الادني للسحب ١٠ ",
 
+          "totalNote":"هذا الاجمالي بعد خصم ١٠ ٪ للتطبيق و الاجمالي يتم تفعيله علي الطلبات الناجحة بشكل كامل فقط"
+          //"This total is after a 10% discount on the application, and the total is activated on fully successful applications only",
 
 
-      "checkMail":"تم ارسال رابط لاستعادة كلمة المرور علي بريدك الالكتروني ",
+ , "noProfit":"لا ارباح الان ",
+
+          "checkMail":"تم ارسال رابط لاستعادة كلمة المرور علي بريدك الالكتروني ",
 
         },
-
-        
         "en":{
+
+          "noProfit":"No Profit Now",
+          "moneyData" : "Money From Orders ",
+
+          "totalNote":"This total is after a 10% discount on the application, and the total is activated on fully successful applications only",
+
+          "moneyData2" : " Admin Only  ",
+
 
           "change":"Change",
 
@@ -666,8 +680,15 @@ Proudly made in Algeria
           "changeDone":"Change Done"
 
         }
+       ,"fr":{
 
-      ,"fr":{
+          "noProfit":"aucun bénéfice",
+
+        "totalNote":"Ce total s'entend après une remise de 10 % sur la candidature, et le total n'est activé que sur les candidatures entièrement réussies.",
+
+        "moneyData" : "Argent des commandes ",
+
+        "moneyData2" : " Administrateur uniquement  ",
 
         "change":"Changement",
 
@@ -1007,7 +1028,5 @@ Fièrement fabriqué en Algérie
         ''',
 
       }
-     
-     
       };
 }

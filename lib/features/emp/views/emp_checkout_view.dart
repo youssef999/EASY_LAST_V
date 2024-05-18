@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, sort_child_properties_last
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/const/constant.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
@@ -16,7 +17,9 @@ import 'package:google_fonts/google_fonts.dart';
 class EmpCheckoutView extends StatefulWidget {
   Map<String, dynamic> data;
 
-  EmpCheckoutView({super.key, required this.data});
+
+  EmpCheckoutView({super.key, required this.data,
+  });
 
   @override
   State<EmpCheckoutView> createState() => _CheckOutViewState();

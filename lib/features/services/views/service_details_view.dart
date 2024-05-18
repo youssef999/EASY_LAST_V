@@ -6,6 +6,7 @@ import 'package:freelancerApp/core/widgets/Custom_Text.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/chat/views/chat_view.dart';
 import 'package:freelancerApp/features/checkout/views/checkout_view.dart';
+import 'package:freelancerApp/features/emp/views/emp_service_check.dart';
 import 'package:freelancerApp/features/services/controllers/product_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,11 +25,13 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
   ProductController controller=Get.put(ProductController());
   @override
   void initState() {
+     controller.getServiceRate();
 
-     controller. getServiceRate();
-     controller. getEmpData(controller.posts?['freelancer_email']);
+     controller.getEmpData(controller.posts?['freelancer_email']);
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,6 +195,10 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
                           )
                         ],
                       ),
+
+
+
+
                     // Column(
                     //   children: [
                     //
@@ -216,16 +223,14 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
 
           if(controller.posts!['empType']=='offline'){
 
-            Get.to(EmpCheckoutView(
+            Get.to(EmpCheckoutView2(
               data: controller.empData[0],
+              data2: controller.posts!,
             ));
 
           }else{
             Get.to( CheckOutView(data: controller.posts!));
           }
-
-
-
           //Get.toNamed(Routes.CART);
         }, 'buyService'.tr, AppColors.primary));
   }

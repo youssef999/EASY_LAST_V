@@ -5,9 +5,12 @@
 
 
 
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/widgets/Custom_button.dart';
 import 'package:freelancerApp/features/emp/views/emp_checkout_view.dart';
+import 'package:freelancerApp/features/emp/views/emp_service_check.dart';
 import 'package:freelancerApp/features/map_controller.dart';
 import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -16,10 +19,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/widgets/custom_app_bar.dart';
 
-class MapViewSelect2 extends GetView<MapController> {
-  Map<String,dynamic>data;
- 
-  MapViewSelect2({super.key,required this.data});
+class MapViewSelect3 extends GetView<MapController> {
+DocumentSnapshot data2;
+Map<String,dynamic>data;
+
+
+
+MapViewSelect3({super.key,required this.data,required this.data2});
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +97,12 @@ class MapViewSelect2 extends GetView<MapController> {
               width: 166,
               child: CustomButton(text: 'next'.tr,
                   onPressed:(){
-                        final box = GetStorage();
+                    final box = GetStorage();
                     box.write('lat',controller.lat);
                     box.write('lng',controller.lng);
-                      Get.off(EmpCheckoutView(data: data,
-
-
-                      ));
+                    Get.off(EmpCheckoutView2(data: data,
+                      data2:data2
+                    ));
                   }, color1: Colors.black
                   , color2: Colors.black),
             ),
