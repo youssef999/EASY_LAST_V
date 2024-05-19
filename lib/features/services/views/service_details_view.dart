@@ -41,18 +41,44 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
         body: Form(
           child: ListView(
             children: [
-              Container(
+
+
+              SizedBox(
                 height: 300,
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 228, 228, 228),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20))),
-                child: Center(
-                  child: Image.network(controller.posts?['image']),
-                ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+
+                  itemCount: controller.posts?['images'].length,
+                  itemBuilder: ((context, index) {
+                  return  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                                     // height: 300,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 228, 228, 228),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20))),
+                    child: Center(
+                      child: Image.network(controller.posts?['images'][index]),
+                    ),
+                                    ),
+                  );
+                })),
               ),
+              // Container(
+              //   height: 300,
+              //   clipBehavior: Clip.antiAlias,
+              //   decoration: const BoxDecoration(
+              //       color: Color.fromARGB(255, 228, 228, 228),
+              //       borderRadius: BorderRadius.only(
+              //           bottomLeft: Radius.circular(20),
+              //           bottomRight: Radius.circular(20))),
+              //   child: Center(
+              //     child: Image.network(controller.posts?['image']),
+              //   ),
+              // ),
               Center(
                 child: txtT('name', 'Hind', 30, FontWeight.w900, Colors.black),
               ),

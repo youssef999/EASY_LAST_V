@@ -409,6 +409,9 @@ addEmpOrderToFireStore2(DocumentSnapshot data)async{
 
       'location':locationName,
 
+      "locationName":locationController.text,
+
+
       "type":"offline",
 
       'lat':lat,

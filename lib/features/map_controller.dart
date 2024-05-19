@@ -11,7 +11,6 @@ import 'package:location/location.dart'as loc;
 
 class MapController extends GetxController {
 
-
   TextEditingController dateController=TextEditingController();
   dynamic dateTime='';
   double lat=30.106505499999997;

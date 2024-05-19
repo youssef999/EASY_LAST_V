@@ -18,8 +18,6 @@ class OrderRequestView extends StatefulWidget {
 class _OrderRequestViewState extends State<OrderRequestView> {
 
   OrderController controller=Get.put(OrderController());
-
-
   @override
   void initState() {
     super.initState();

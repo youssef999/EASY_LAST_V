@@ -39,9 +39,14 @@ class _AddServicesViewState extends State<AddServicesView> {
             const SizedBox(
               height: 13,
             ),
+            
             (controller.pickedImageXFiles != null &&
                     controller.pickedImageXFiles!.isNotEmpty)
-                ? Column(children: [
+                ? 
+                
+        
+                Column(children: [
+               
                     Container(
                       decoration: BoxDecoration(
                          color: Colors.black,
@@ -62,6 +67,58 @@ class _AddServicesViewState extends State<AddServicesView> {
                         },
                       ),
                     ),
+                    
+
+                  (controller.pickedImageXFiles!.length > 1) ? 
+                    Padding(
+                      padding: const EdgeInsets.only(top:11.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                           color: Colors.black,
+                            borderRadius: BorderRadius.circular(15)),
+                            clipBehavior: Clip.antiAlias,
+                        child: GestureDetector(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width * 0.41,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: FileImage(File(
+                                        controller.pickedImageXFiles![0].path)),
+                                    fit: BoxFit.cover)),
+                          ),
+                          onTap: () {
+                            controller.pickMultiImage();
+                          },
+                        ),
+                      ),
+                    ):const SizedBox(),
+
+
+                    (controller.pickedImageXFiles!.length > 2) ? 
+                    Padding(
+                      padding: const EdgeInsets.only(top:11.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                           color: Colors.black,
+                            borderRadius: BorderRadius.circular(15)),
+                            clipBehavior: Clip.antiAlias,
+                        child: GestureDetector(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width * 0.41,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: FileImage(File(
+                                        controller.pickedImageXFiles![2].path)),
+                                    fit: BoxFit.cover)),
+                          ),
+                          onTap: () {
+                            controller.pickMultiImage();
+                          },
+                        ),
+                      ),
+                    ):const SizedBox()
                   ])
                 : InkWell(
                     child: Column(

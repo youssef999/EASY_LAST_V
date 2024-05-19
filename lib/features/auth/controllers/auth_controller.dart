@@ -656,6 +656,7 @@ class AuthController extends GetxController {
 
 
   addUserToWallet() async{
+
     const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
     Random random = Random();
     String result = '';
@@ -716,8 +717,12 @@ class AuthController extends GetxController {
             });
           } else {
             if (empType == 'online'.tr) {
+
               box.write('empType', 'online');
+
               addUserToWallet();
+
+
               await firestore.collection('freelancers').add({
                 'name': nameController.text,
                 'password': passController.text,

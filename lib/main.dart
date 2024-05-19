@@ -40,6 +40,7 @@ void main() async {
   runApp(const MainApp());
 }
 
+
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
   @override
@@ -135,6 +136,8 @@ List<Map<String, dynamic>> tokenList = [];
 
   @override
   Widget build(BuildContext context) {
+
+
     final box=GetStorage();
     //en //ar
     String keylocal=box.read('locale')??'';///en //ar //' '

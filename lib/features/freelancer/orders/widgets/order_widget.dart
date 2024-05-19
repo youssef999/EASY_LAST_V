@@ -109,19 +109,16 @@ class OrderCardWidget extends StatelessWidget {
                           )),
                           const SizedBox(width: 10,),
                           (data['type']=='offline')?
-                          Custom_Text(text: data['locationName'],
+                          Custom_Text(text: data['locationName']??'',
                             fontSize:19,color:AppColors.textColorDark,
                             fontWeight:FontWeight.w700,
                           ):
-                          Custom_Text(text: data['location'],
+                          Custom_Text(text: data['location']??" ",
                             fontSize:19,color:AppColors.textColorDark,
                             fontWeight:FontWeight.w700,
                           ),
                         ],
                       ),
-
-
-
                       IconButton(onPressed: (){
                         controller.openLocation(double.parse(
                             data['lat'].toString()
@@ -131,12 +128,8 @@ class OrderCardWidget extends StatelessWidget {
                         color:AppColors.primary,
                         size: 35,
                       )),
-
-
-
                     ],
                   ):const SizedBox(),
-
                   const SizedBox(
                     height: 7,
                   ),

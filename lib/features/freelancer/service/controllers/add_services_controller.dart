@@ -289,15 +289,11 @@ print("FREELANCER........XXX......");
 
 
   addServiceToFireStore()async {
-
     final box=GetStorage();
     //  box.write('empType', 'offline');
     String type=box.read('empType')??"online";
-
-
     print("TYPE==="+type);
-
-  isLoading=true;
+    isLoading=true;
 
     update();
 
@@ -315,9 +311,9 @@ const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345
     result += chars[random.nextInt(chars.length)];
   }
 try{
-await FirebaseFirestore.instance.collection('services')
-.doc(result)
-.set({
+ await FirebaseFirestore.instance.collection('services')
+ .doc(result)
+  .set({
   'serviceId':result,
   "empType":type,
    'name':serviceNameController.text.capitalize,
@@ -329,9 +325,10 @@ await FirebaseFirestore.instance.collection('services')
      //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4i_rii7NjuzWcPQgmVtyAsckGk-YPxgrDgwGQlC772A&s',
      'freelancer_name':freelancerData[0]['name'].toString(),
      'type':'top',
-    'comment':[],
-    'rate':[],
-    'image':downloadUrls[0],
+     'comment':[],
+     'rate':[],
+     'image':downloadUrls[0],
+     'images':downloadUrls
     //'service_image':downloadUrls
    // 'service_image':downloadUrls[0],
     }).then((value) {
@@ -348,9 +345,7 @@ await FirebaseFirestore.instance.collection('services')
   print(e);
   appMessage(text: "serviceFail".tr,fail: true);
 }
-
   Get.offAll(RootView());
-  
 }
 
 
