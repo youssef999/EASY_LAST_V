@@ -706,6 +706,7 @@ class AuthController extends GetxController {
               'email': emailController.text,
               'token': token,
               'country': selectedCountry,
+              ''
               //  'roleId': roleId.text,
               'type': 'normal',
               'uid': userId?.uid,
@@ -734,7 +735,8 @@ class AuthController extends GetxController {
                 'images': downloadUrls,
                 'bio': '',
                 'phone': phoneNumber,
-                'image': profileDownloadUrl[0]
+                'image': profileDownloadUrl[0],
+                 'images2':[]
               });
             } else {
                 box.write('empType', 'offline');
@@ -747,6 +749,7 @@ class AuthController extends GetxController {
                 'image': profileDownloadUrl[0],
                 'token': token,
                 'country': selectedCountry,
+                'images2':[],
                 'catEn': enCat,
                 'emp': empCatController.text,
                 'lat': lat,

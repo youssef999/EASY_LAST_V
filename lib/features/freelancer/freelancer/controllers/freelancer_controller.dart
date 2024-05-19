@@ -86,11 +86,11 @@ filterComment(){
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
           .toList();
 
-    querySnapshot.docs.map((doc) =>sliderImagesList.value= doc['images']).toList() ;
+    querySnapshot.docs.map((doc) =>sliderImagesList.value= doc['images2']).toList() ;
       freelancerData = data;
 
-      for(int i=0;i<freelancerData[i]['images'].length;i++){
-        freelancerImage=freelancerData[i]['images'];
+      for(int i=0;i<freelancerData[i]['images2'].length;i++){
+        freelancerImage=freelancerData[i]['images2'];
         //freelancerImage.add(freelancerData[i]['images']);
       }
     } catch (e) {
@@ -225,7 +225,7 @@ void updateFreelancerData() async {
 
       // Update the data in the document
       users.doc(userDocument.id).update({
-        'images':freelancerImage,
+        'images2':freelancerImage,
         // Add more fields to update as needed
       }).then((_) {
         isDataLoading=false;
@@ -240,9 +240,6 @@ void updateFreelancerData() async {
     //  print('User with email $userEmail not found or multiple users found.');
     }
   }
-
-
-
 
 
   pickImage() async {

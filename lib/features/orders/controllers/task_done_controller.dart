@@ -20,8 +20,7 @@ TextEditingController commentController=TextEditingController();
 
  double value = 0.0;
 
- changeValue(double val){   
-
+ changeValue(double val){
    value=val;
    update();
  }
@@ -193,8 +192,6 @@ TextEditingController commentController=TextEditingController();
       update();
  }
 
-
-
   orderDone(String email,String price) async {
 
     print("price==="+price);
@@ -347,20 +344,6 @@ TextEditingController commentController=TextEditingController();
       }
       update();
     }
-
-    
-   
-
-
-
-
-
-
-
-
- 
-    
-   
   }
 
 

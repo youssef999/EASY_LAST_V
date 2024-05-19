@@ -38,7 +38,6 @@ void main() async {
     box.write('locale','ar');
   }
   runApp(const MainApp());
-
 }
 
 class MainApp extends StatefulWidget {

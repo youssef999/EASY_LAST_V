@@ -20,6 +20,7 @@ class CheckoutController extends GetxController{
 TextEditingController desController=TextEditingController();
 
 TextEditingController locationController=TextEditingController();
+TextEditingController serviceNameController=TextEditingController();
 
 TextEditingController priceController=TextEditingController();
 TextEditingController notesController=TextEditingController();
@@ -459,7 +460,6 @@ addEmpOrderToFireStore(Map<String,dynamic> data)async{
   final box=GetStorage();
 
   String locationName= box.read('location').toString();
-
   var lat = box.read('lat') ?? '';
   var lng = box.read('lng') ?? '';
 
@@ -484,16 +484,20 @@ addEmpOrderToFireStore(Map<String,dynamic> data)async{
     await FirebaseFirestore.instance.collection('orders').doc(result)
         .set({
 
-      'service_name':data['name'].toString(),
+      'service_name':serviceNameController.text,
+      //data['name'].toString(),
       'date':formattedDate,
       //DateTime.now().toString()
       "freelancer_email":data['email'].toString(),
 
       'freelancer_name': data['name'].toString(),
 
-      'service_image':data['image'],
+      'service_image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjHJIph1Gu5q_2b_tWSeNwoWPlst48iOpumLEZrZtvg&s',
+      //data['image'],
 
       'location':locationName,
+
+      "locationName":locationController.text,
 
       "type":"offline",
 

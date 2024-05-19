@@ -6,6 +6,7 @@ import 'package:freelancerApp/core/const/constant.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/emp/views/emp_checkout_view.dart';
+import 'package:freelancerApp/features/emp/views/image_view.dart';
 import 'package:freelancerApp/features/services/controllers/product_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -198,28 +199,47 @@ class _EmpDetailsViewState extends State<EmpDetailsView> {
                 ],
               ),
 
-              const SizedBox(height: 10,),
 
-              Custom_Text(text: 'myWork'.tr,),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Custom_Text(text: 'myWork'.tr,
+                fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                ),
+              ),
 
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: 200,
                   child: ListView.builder(
-                   physics: const NeverScrollableScrollPhysics(),
+                 //  physics: const NeverScrollableScrollPhysics(),
                    // shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.emp['images'].length,
+                      itemCount: widget.emp['images2'].length,
                       itemBuilder: (context,index){
                         return   Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                              height: 100,
-                              width: 90,
-                              child: Image.network(widget.emp['images'][index],
-                              fit:BoxFit.fill,
-                              )),
+                          child: InkWell(
+                            child: SizedBox(
+                                height: 100,
+                                width: 90,
+                                child: Container(
+                                  decoration:BoxDecoration(
+                                    color:Colors.white,
+                                    borderRadius:BorderRadius.circular(16)
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.network(widget.emp['images2'][index],
+                                    fit:BoxFit.fill,
+                                    ),
+                                  ),
+                                )),
+                            onTap:(){
+                              Get.to(ImageView(image: widget.emp['images2'][index]));
+                            },
+                          ),
                         );
                   }),
                 ),

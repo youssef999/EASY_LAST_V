@@ -132,6 +132,7 @@ class _AddPortfolioState extends State<AddPortfolio> {
                                                 (controller.isDataLoading==false)?
                                                 CustomButton(text: 'add'.tr,
                                                     onPressed: (){
+
                                                       controller.addNewImage();
 
                                                     }):const Center(

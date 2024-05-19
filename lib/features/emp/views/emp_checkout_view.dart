@@ -16,8 +16,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class EmpCheckoutView extends StatefulWidget {
   Map<String, dynamic> data;
-
-
   EmpCheckoutView({super.key, required this.data,
   });
 
@@ -72,6 +70,15 @@ class _CheckOutViewState extends State<EmpCheckoutView> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          CustomTextFormField(
+              hint: 'serviceName'.tr,
+              max: 3,
+              obs: false,
+              icon: Icons.design_services,
+              controller: controller.serviceNameController),
           const SizedBox(
             height: 10,
           ),

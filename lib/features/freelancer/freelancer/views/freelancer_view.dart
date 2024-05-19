@@ -25,6 +25,7 @@ class FreelancerView extends StatefulWidget {
 }
 
 class _FreelancerViewState extends State<FreelancerView> {
+
   FreelancerController controller = Get.put(FreelancerController());
 
   @override

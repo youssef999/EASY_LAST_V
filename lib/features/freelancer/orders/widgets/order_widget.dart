@@ -81,9 +81,9 @@ class OrderCardWidget extends StatelessWidget {
                     height: 7,
                   ),
                   Custom_Text(
-                    text: data['service_name'].toString() ?? "",
+                    text: "serviceName".tr+" : "+data['service_name'].toString() ?? "",
                     color: AppColors.textColorDark,
-                    fontSize: 26,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
 
@@ -108,6 +108,11 @@ class OrderCardWidget extends StatelessWidget {
                           size: 35,
                           )),
                           const SizedBox(width: 10,),
+                          (data['type']=='offline')?
+                          Custom_Text(text: data['locationName'],
+                            fontSize:19,color:AppColors.textColorDark,
+                            fontWeight:FontWeight.w700,
+                          ):
                           Custom_Text(text: data['location'],
                             fontSize:19,color:AppColors.textColorDark,
                             fontWeight:FontWeight.w700,
@@ -135,8 +140,8 @@ class OrderCardWidget extends StatelessWidget {
                   const SizedBox(
                     height: 7,
                   ),
-                  (data['client_name'].toString().length>1)?
-                   sampleCardData('from'.tr,data['client_name'].toString()):
+                  (data['client_email'].toString().length>1)?
+                   sampleCardData('from'.tr,data['client_email'].toString()):
                   const SizedBox(),
 
                   (data['order_des'].toString().length>1)?
@@ -172,12 +177,37 @@ class OrderCardWidget extends StatelessWidget {
                   const SizedBox(
                     height: 7,
                   ),
-                  sampleCardData(
-                      'notes'.tr, '${data['notes']} $currency'),
+
+                  // sampleCardData(
+                  //     'notes'.tr, '${data['notes']} '),
                   const SizedBox(
                     height: 7,
                   ),
                   sampleCardData('status'.tr, status),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      const SizedBox(width: 15,),
+                      Column(
+                        children: [
+                          const SizedBox(width: 14,),
+                          Text('notes'.tr,style: TextStyle(
+                              color:AppColors.textColorGreyMode,fontSize:18
+                          ),),
+                          const SizedBox(width: 10,),
+
+                          Text(
+                            maxLines: 5,
+                            data['notes'],
+                            style:const TextStyle(color:AppColors.primaryDarkColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 15,
                   ),
@@ -253,17 +283,17 @@ Widget sampleCardData(String txt1,String txt2){
   }
   return   Row(
     children: [
-      const SizedBox(width: 14,),
+      const SizedBox(width: 10,),
       Text(txt1,style: TextStyle(
           color:AppColors.textColorGreyMode,fontSize:18
       ),),
-      const SizedBox(width: 10,),
+      const SizedBox(width: 8,),
 
 
       Custom_Text(
         text: txt2,
         color: AppColors.primaryDarkColor,
-        fontSize: 16,
+        fontSize: 13,
         fontWeight: FontWeight.bold,
       ),
     ],
