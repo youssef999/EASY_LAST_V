@@ -25,7 +25,7 @@ import '../resources/app_colors.dart';
   Widget build(BuildContext context) {
     return
       SizedBox(
-        width:110,
+        width:150,
         height:50,
         child:InkWell(
           child: 

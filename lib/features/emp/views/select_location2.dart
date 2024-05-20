@@ -1,8 +1,3 @@
-
-
-
-
-
 // ignore_for_file: avoid_print, unused_local_variable, depend_on_referenced_packages
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,12 +14,8 @@ import '../../../core/widgets/custom_app_bar.dart';
 import '../../map_controller.dart';
 import '../../predict_places.dart';
 
-
 // ignore: must_be_immutable
 class SearchPlacesView2 extends StatefulWidget
-
-
-
 {
   Map<String,dynamic>data;
    SearchPlacesView2({super.key,required this.data});

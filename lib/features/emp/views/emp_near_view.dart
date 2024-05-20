@@ -49,7 +49,7 @@ HomeController controller=Get.put(HomeController());
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 0.89, 
+                  crossAxisCount: 2, childAspectRatio: 0.77,
                   crossAxisSpacing: 4
                   ),
               itemCount:controller.empFilterList.length,

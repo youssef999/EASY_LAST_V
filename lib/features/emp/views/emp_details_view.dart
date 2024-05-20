@@ -11,6 +11,9 @@ import 'package:freelancerApp/features/services/controllers/product_controller.d
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/widgets/Custom_button.dart';
+import '../../services/views/image_service.dart';
+
 // ignore: must_be_immutable
 class EmpDetailsView extends StatefulWidget {
   Map<String, dynamic> emp;
@@ -202,9 +205,20 @@ class _EmpDetailsViewState extends State<EmpDetailsView> {
 
               Padding(
                 padding: const EdgeInsets.all(14.0),
-                child: Custom_Text(text: 'myWork'.tr,
-                fontWeight: FontWeight.w700,
-                  fontSize: 20,
+                child: Row(
+                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                  children: [
+                    Custom_Text(text: 'myWork'.tr,
+                    fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                    ),
+    CustomButton(
+        color1:AppColors.primary,
+        text: 'portImages'.tr, onPressed:() {
+      Get.to(ImageService(images:
+      widget.emp['images2']));
+    })
+    ],
                 ),
               ),
 

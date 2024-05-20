@@ -29,6 +29,7 @@ class _AddServicesViewState extends State<AddServicesView> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: AppColors.mainly,
       appBar: CustomAppBar('addService'.tr, context, false),

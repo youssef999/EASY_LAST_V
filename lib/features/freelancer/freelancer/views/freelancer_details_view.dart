@@ -11,6 +11,9 @@ import 'package:freelancerApp/features/freelancer/freelancer/widget/review.dart'
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/widgets/Custom_button.dart';
+import '../../../services/views/image_service.dart';
+
 class FreelancerDetailsView extends StatefulWidget {
   DocumentSnapshot data;
 
@@ -169,13 +172,19 @@ class _FreelancerDetailsViewState extends State<FreelancerDetailsView> {
             height: 5,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'myWork'.tr,
-              style: GoogleFonts.cairo(
-                  color: AppColors.primaryDarkColor,
+            padding: const EdgeInsets.all(14.0),
+            child: Row(
+              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+              children: [
+                Custom_Text(text: 'myWork'.tr,
+                  fontWeight: FontWeight.w700,
                   fontSize: 20,
-                  fontWeight: FontWeight.bold),
+                ),
+                CustomButton(text: 'portImages'.tr, onPressed:() {
+                  Get.to(ImageService(images:
+                  widget.data['images2']));
+                })
+              ],
             ),
           ),
           const Padding(

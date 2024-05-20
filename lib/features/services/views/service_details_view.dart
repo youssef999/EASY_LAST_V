@@ -11,6 +11,7 @@ import 'package:freelancerApp/features/services/controllers/product_controller.d
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../emp/views/emp_checkout_view.dart';
+import 'image_service.dart';
 
 class ServiceDetailsView extends StatefulWidget {
 
@@ -43,42 +44,36 @@ class _ServiceDetailsViewState extends State<ServiceDetailsView> {
             children: [
 
 
-              SizedBox(
-                height: 300,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
 
-                  itemCount: controller.posts?['images'].length,
-                  itemBuilder: ((context, index) {
-                  return  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                                     // height: 300,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 228, 228, 228),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
-                    child: Center(
-                      child: Image.network(controller.posts?['images'][index]),
-                    ),
-                                    ),
-                  );
-                })),
+              Container(
+                height: 300,
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 228, 228, 228),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
+                child: Center(
+                  child: Image.network(controller.posts?['image']),
+                ),
               ),
-              // Container(
-              //   height: 300,
-              //   clipBehavior: Clip.antiAlias,
-              //   decoration: const BoxDecoration(
-              //       color: Color.fromARGB(255, 228, 228, 228),
-              //       borderRadius: BorderRadius.only(
-              //           bottomLeft: Radius.circular(20),
-              //           bottomRight: Radius.circular(20))),
-              //   child: Center(
-              //     child: Image.network(controller.posts?['image']),
-              //   ),
-              // ),
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  const SizedBox(width: 20,),
+                  Custom_Text(text: 'serviceImages'.tr,
+                  fontWeight: FontWeight.w700,fontSize: 22,
+                  ),
+                  const SizedBox(width: 20,),
+                  IconButton(onPressed: (){
+                    Get.to(ImageService(
+                      images: controller.posts?['images'],
+                    ));
+                  }, icon: const Icon(Icons.navigate_next_sharp,
+                  color: Colors.blue,
+                  )),
+                ],
+              ),
               Center(
                 child: txtT('name', 'Hind', 30, FontWeight.w900, Colors.black),
               ),

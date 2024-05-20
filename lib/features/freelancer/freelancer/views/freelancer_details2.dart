@@ -4,10 +4,12 @@ import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
 import 'package:freelancerApp/core/widgets/Custom_Text.dart';
+import 'package:freelancerApp/core/widgets/Custom_button.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/freelancer/freelancer/controllers/freelancer_controller.dart';
 import 'package:freelancerApp/features/freelancer/freelancer/views/show_service_details.dart';
 import 'package:freelancerApp/features/freelancer/freelancer/widget/review.dart';
+import 'package:freelancerApp/features/services/views/image_service.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -193,12 +195,23 @@ class _FreelancerDetailsViewState extends State<FreelancerDetailsView2> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'myWork'.tr,
-              style: GoogleFonts.cairo(
-                  color: AppColors.primaryDarkColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'myWork'.tr,
+                  style: GoogleFonts.cairo(
+                      color: AppColors.primaryDarkColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+
+                CustomButton(text: 'portImages'.tr, onPressed:(){
+                  Get.to(ImageService(images:
+                   widget.data['images2']));
+
+                }),
+              ],
             ),
           ),
 

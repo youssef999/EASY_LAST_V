@@ -24,8 +24,6 @@ import 'emp_map_service.dart';
 // ignore: must_be_immutable
 class SearchPlacesView3 extends StatefulWidget
 
-
-
 {
   Map<String,dynamic>data;
   DocumentSnapshot data2;

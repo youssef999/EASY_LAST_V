@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/widgets/Custom_button.dart';
 import 'package:freelancerApp/features/emp/views/emp_checkout_view.dart';
@@ -13,16 +7,16 @@ import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../../../core/widgets/custom_app_bar.dart';
 
 class MapViewSelect2 extends GetView<MapController> {
+
   Map<String,dynamic>data;
- 
   MapViewSelect2({super.key,required this.data});
 
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
       appBar: CustomAppBar('enterPlace'.tr, context,false),
       floatingActionButton: Column(
@@ -91,13 +85,13 @@ class MapViewSelect2 extends GetView<MapController> {
               width: 166,
               child: CustomButton(text: 'next'.tr,
                   onPressed:(){
-                        final box = GetStorage();
+
+                   final box = GetStorage();
                     box.write('lat',controller.lat);
                     box.write('lng',controller.lng);
                       Get.off(EmpCheckoutView(data: data,
-
-
                       ));
+
                   }, color1: Colors.black
                   , color2: Colors.black),
             ),

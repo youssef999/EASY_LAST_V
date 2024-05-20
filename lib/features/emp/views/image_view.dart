@@ -5,8 +5,8 @@
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 
 class ImageView extends StatelessWidget {
-  String image;
 
+  String image;
   ImageView({super.key,required this.image});
 
   @override
@@ -23,7 +23,6 @@ class ImageView extends StatelessWidget {
             fit:BoxFit.fill,
             ),
           )
-
         ],),
       ),
     );

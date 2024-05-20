@@ -15,6 +15,9 @@ class MyLocal implements Translations{
 
           "serviceName":"اسم الخدمة",
 
+          "portImages":"عرض معرض الاعمال ",
+          "serviceImages":"صور الخدمة ",
+
           "moneyData" : "ارباح متوقعة من الطلبات ",
 
           "moneyData2" : " للادمن فقط  ",
@@ -360,6 +363,11 @@ class MyLocal implements Translations{
         "en":{
 
           "noProfit":"No Profit Now",
+
+          "portImages":" View Portfolio ",
+
+          "serviceImages":"Service Images ",
+
           "moneyData" : "Money From Orders ",
 
           "totalNote":"This total is after a 10% discount on the application, and the total is activated on fully successful applications only",
@@ -683,6 +691,10 @@ Proudly made in Algeria
        ,"fr":{
 
           "noProfit":"aucun bénéfice",
+
+        "portImages":" Voir le portefeuille ",
+
+        "serviceImages":"Images de services ",
 
         "totalNote":"Ce total s'entend après une remise de 10 % sur la candidature, et le total n'est activé que sur les candidatures entièrement réussies.",
 
