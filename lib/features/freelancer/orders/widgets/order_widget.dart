@@ -87,7 +87,6 @@ class OrderCardWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
 
-
                   const SizedBox(height: 7,),
 
                   ( data['location'].toString().length>1
@@ -205,13 +204,13 @@ class OrderCardWidget extends StatelessWidget {
                     height: 15,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                          if  (data['order_status']=='pending')
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(6.0),
                   child: Row(
                     mainAxisAlignment:MainAxisAlignment.spaceAround,
                     children: [
@@ -232,7 +231,7 @@ class OrderCardWidget extends StatelessWidget {
 
 
                     }),
-                    const SizedBox(width: 10,),
+                    const SizedBox(width: 7,),
                    
                     CustomButton(
                         color1:AppColors.failed.withOpacity(0.9),

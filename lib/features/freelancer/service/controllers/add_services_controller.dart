@@ -350,11 +350,9 @@ try{
 
 
 updatService(String itemId) async {
- 
- isLoading=true;
- 
- update();
 
+ isLoading=true; 
+ update();
 try{
  if(serviceNameController.text.isNotEmpty){
     await FirebaseFirestore.instance.
@@ -382,7 +380,6 @@ try{
         isLoading=false;
         update();
         Get.offAll(RootView());
-
       }catch(e){
     isLoading=false;
     update();

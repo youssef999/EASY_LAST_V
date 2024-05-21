@@ -97,22 +97,25 @@ class AllChatWidget extends StatelessWidget {
                               Custom_Text(
                                 text: controller.recNames[index],
                                 color: AppColors.textColorDark,
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                               Custom_Text(
                                 text: controller.recTexts[index],
-                                color: Color.fromARGB(255, 141, 141, 141),
-                                fontSize: 15,
+                                color: const Color.fromARGB(255, 141, 141, 141),
+                                fontSize: 14,
                               ),
                             ],
                           ),
-                          CustomButton(
-                              text: 'chat'.tr,
-                              onPressed: () {
-                                Get.to(ChatView(
-                                  rec: controller.recNames[index],
-                                ));
-                              })
+                          SizedBox(
+                            width:90,
+                            child: CustomButton(
+                                text: 'chat'.tr,
+                                onPressed: () {
+                                  Get.to(ChatView(
+                                    rec: controller.recNames[index],
+                                  ));
+                                }),
+                          )
                         ],
                       ),
                     ]),

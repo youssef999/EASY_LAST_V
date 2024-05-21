@@ -224,11 +224,11 @@ class MessageStreamWidget extends StatelessWidget {
             final messageText = message.get('text');
             final time = message.get('time');
             final receiver = message.get('rec');
-            final currentUser = controller.signedInUser.email;
+            final currentUser = controller.signedInUser?.email??"";
             final imageSend = message.get('image');
             Ui.logSuccess('MSg $messageText');
             Ui.logSuccess('currentU $currentUser');
-            //  Ui.logSuccess('A $sender');
+            //  Ui.logSuccßess('A $sender');
             String roleId = box.read('roleId')??'1';
             String sender = '';
 

@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ChatController extends GetxController {
   final auth = FirebaseAuth.instance;
-  late User signedInUser;
+  User ? signedInUser;
   String messageText = '';
   Rx<bool>? isEMP = false.obs;
   File? imageFile;
@@ -33,7 +33,7 @@ class ChatController extends GetxController {
       if (user != null) {
         signedInUser = user;
         // ignore: avoid_print
-        print(signedInUser.email);
+        print(signedInUser?.email??'');
       }
     } catch (e) {
       print(e);
