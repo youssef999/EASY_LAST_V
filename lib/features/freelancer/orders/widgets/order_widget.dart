@@ -25,26 +25,21 @@ class OrderCardWidget extends StatelessWidget {
    String lat=box.read('lat').toString()??"";
 
    String lng=box.read('lng').toString()??"";
-   
-    String status='';
-    
+
+   String status='';
+
     if(data['order_status']=='pending'){
       status='pending'.tr;
     }
-
     if(data['order_status']=='accept'){
       status='finish'.tr;
-      
     }
-
     if(data['order_status']=='refuse'){
       status='cancel'.tr;
     }
-
     if(data['order_status']=='Done'){
       status='taskFinish'.tr;
     }
-
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -64,7 +59,7 @@ class OrderCardWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(0.0),
               child: Container(
-                clipBehavior: Clip.antiAlias,
+             //   clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: AppColors.mainly),
@@ -98,7 +93,8 @@ class OrderCardWidget extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(onPressed: (){
-                            controller.openLocation(double.parse(
+                            controller.openLocation
+                              (double.parse(
                                 data['lat']
                             )
                                 , double.parse(data['lng']));
@@ -122,7 +118,7 @@ class OrderCardWidget extends StatelessWidget {
                         controller.openLocation(double.parse(
                             data['lat'].toString()
                         )
-                            , double.parse(data['lng'].toString()));
+              , double.parse(data['lng'].toString()));
                       }, icon:  Icon(Icons.navigate_next_outlined,
                         color:AppColors.primary,
                         size: 35,
@@ -130,28 +126,11 @@ class OrderCardWidget extends StatelessWidget {
                     ],
                   ):const SizedBox(),
                   const SizedBox(
-                    height: 7,
+                    height: 5,
                   ),
                   (data['client_email'].toString().length>1)?
                    sampleCardData('from'.tr,data['client_email'].toString()):
                   const SizedBox(),
-
-                  (data['order_des'].toString().length>1)?
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      children: [
-                        Custom_Text(text: "${'des'.tr} : ",
-                        fontSize:12,color:AppColors.textColorGreyMode,
-                        ),
-                        Custom_Text(
-                          text: data['order_des'].toString() ?? "",
-                          color: AppColors.greyColor,
-                          fontSize: 15,
-                        ),
-                      ],
-                    ),
-                  ):const SizedBox(),
 
                   const SizedBox(
                     height: 7,
@@ -169,36 +148,49 @@ class OrderCardWidget extends StatelessWidget {
                   const SizedBox(
                     height: 7,
                   ),
-
+                  //'${data['notes']} '
                   // sampleCardData(
-                  //     'notes'.tr, '${data['notes']} '),
-                  const SizedBox(
-                    height: 7,
-                  ),
+                  //     'notes'.tr, 'djicjijeijiwjiedimdewidmededeimiwmwkmeksmxkmkmsxw92393939392929'),
+                  // const SizedBox(
+                  //   height: 7,
+                  // ),
                   sampleCardData('status'.tr, status),
                   const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      const SizedBox(width: 15,),
-                      Column(
-                        children: [
-                          const SizedBox(width: 14,),
-                          Text('notes'.tr,style: TextStyle(
-                              color:AppColors.textColorGreyMode,fontSize:18
-                          ),),
-                          const SizedBox(width: 10,),
+                  (data['order_des'].toString().length>1)?
+                  Padding(
+                    padding:  EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Custom_Text(text: "${'des'.tr} : ",
+                          fontSize:12,color:AppColors.textColorGreyMode,
+                        ),
+                        Text(
+                          data['order_des'].toString() ?? "",
+                         style:TextStyle(color:AppColors.primary),
+                         // 'jsdimcsidiwedkewoedkodewdkffffddddfff333333333322eo39292920032033',
+                          maxLines: 5,
 
-                          Text(
-                            maxLines: 5,
-                            data['notes'],
-                            style:const TextStyle(color:AppColors.primaryDarkColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
 
-                        ],
-                      ),
-                    ],
+                        ),
+                       // Custom_Text(
+                        //   text:
+                        //   //data['order_des'].toString() ?? "",
+                        //   color: AppColors.greyColor,
+                        //   fontSize: 15,
+                        // ),
+                      ],
+                    ),
+                  ):const SizedBox(),
+                  Text('notes'.tr,style: TextStyle(
+                      color:AppColors.textColorGreyMode,fontSize:18
+                  ),),
+                  const SizedBox(height: 5,),
+                  Text(
+                    maxLines: 5,
+                    data['notes'],
+                    style:const TextStyle(color:AppColors.primaryDarkColor,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -214,33 +206,23 @@ class OrderCardWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment:MainAxisAlignment.spaceAround,
                     children: [
-
-                  
                     CustomButton(
                       color1:AppColors.success.withOpacity(0.9),
                       text: 'finish'.tr, onPressed:(){
-
                       controller.getUserToken(data['client_email']).then({
-
                       controller.changeOrderStatus(data['id'],
                       'accept',
                       int.parse( data['service_price'].toString()),
                       data['client_email']
                       )
                       });
-
-
                     }),
                     const SizedBox(width: 7,),
-                   
                     CustomButton(
                         color1:AppColors.failed.withOpacity(0.9),
                       text: 'cancel'.tr, onPressed:(){
-
                           controller.getUserToken(data['client_email']).then({
-
                           controller.getUserBalance(data['client_email']).then((value) {
-
                           controller.changeOrderStatus(data['id'],
                           'refuse',
                           int.parse(data['service_price'].toString()),
@@ -249,9 +231,11 @@ class OrderCardWidget extends StatelessWidget {
                           })
                           });
                     })
+
                 ]))])
                   //sampleCardData('des'.tr,data['order_des']),
               )]),
+
               ),
             )),
       ),
@@ -261,8 +245,8 @@ class OrderCardWidget extends StatelessWidget {
     );
   }
 }
-Widget sampleCardData(String txt1,String txt2){
 
+Widget sampleCardData(String txt1,String txt2){
   Color txtColor=AppColors.primary;
   if(txt1=='status'.tr){
     if(txt2=='accept'){
@@ -276,18 +260,23 @@ Widget sampleCardData(String txt1,String txt2){
   return   Row(
     children: [
       const SizedBox(width: 10,),
-      Text(txt1,style: TextStyle(
+      Text(txt1,
+        style: TextStyle(
           color:AppColors.textColorGreyMode,fontSize:18
       ),),
       const SizedBox(width: 8,),
+       Text(txt2,
+         style:TextStyle(color:AppColors.primary),
+       ),
 
 
-      Custom_Text(
-        text: txt2,
-        color: AppColors.primaryDarkColor,
-        fontSize: 13,
-        fontWeight: FontWeight.bold,
-      ),
+      // Custom_Text(
+      //
+      //   text: txt2,
+      //   color: AppColors.primaryDarkColor,
+      //   fontSize: 13,
+      //   fontWeight: FontWeight.bold,
+      // ),
     ],
   );
 }

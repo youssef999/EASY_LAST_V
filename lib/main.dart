@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'features/home/views/all_services.dart';
 
-void main() async {
+ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
@@ -40,15 +40,14 @@ void main() async {
   runApp(const MainApp());
 }
 
-
-class MainApp extends StatefulWidget {
+ class MainApp extends StatefulWidget {
   const MainApp({super.key});
   @override
   State<MainApp> createState() => _MainAppState();
   
 }
 
-class _MainAppState extends State<MainApp> {
+ class _MainAppState extends State<MainApp> {
 
 List<Map<String, dynamic>> tokenList = [];
   String? token='';
@@ -99,13 +98,10 @@ List<Map<String, dynamic>> tokenList = [];
   }
 
   addTokenToFireBase() async {
-
     await FirebaseFirestore.instance.collection('tokens').add({
       'token': token,
-
     }).then((value) {
       print("Done");
-
     });
   }
 
@@ -133,7 +129,6 @@ List<Map<String, dynamic>> tokenList = [];
       print('xx');
     }
   }
-
   @override
   Widget build(BuildContext context) {
     final box=GetStorage();
@@ -205,9 +200,9 @@ List<Map<String, dynamic>> tokenList = [];
   }
 }
 
-FirebaseMessaging messaging = FirebaseMessaging.instance;
+ FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-Future<void> configureFirebaseMessaging() async {
+ Future<void> configureFirebaseMessaging() async {
 
   print("NOTIF");
   FirebaseMessaging.instance
@@ -270,7 +265,7 @@ Future<void> configureFirebaseMessaging() async {
     (_firebaseMessagingBackgroundHandler);
 }
 
-triggerNotification(String msg) {
+ triggerNotification(String msg) {
  print("........TRIGGERR.....");
  print("msg..$msg");
   return AwesomeNotifications().createNotification
