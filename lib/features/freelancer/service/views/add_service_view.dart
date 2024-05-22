@@ -246,10 +246,10 @@ class _AddServicesViewState extends State<AddServicesView> {
               child: CustomButton(
                 text: 'addService'.tr,
                 onPressed: () {
-                  controller.uploadMultiImageToFirebaseStorage
-                    (controller.pickedImageXFiles!).then((value) {
+                  controller.
+                  uploadMultiImageToFirebaseStorage
+     (controller.pickedImageXFiles!).then((value) {
                     controller.startAddingService();
-
                   });
 
                 },

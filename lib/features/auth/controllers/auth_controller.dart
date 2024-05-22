@@ -582,15 +582,59 @@ class AuthController extends GetxController {
     }
   }
 
-  userLogin() async {
 
+  List<Map<String,dynamic>>checkList=[];
+  checkFreelanceType() async {
+    checkList=[];
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection
+      ('employees').where('email',isEqualTo: emailController.text)
+        .get();
+    try{
+      List<Map<String, dynamic>> data
+      = querySnapshot.docs.map((DocumentSnapshot doc) =>
+      doc.data() as Map<String, dynamic>).toList();
+      checkList=data;
+      if(checkList.length>0){
+        box.write('empType','offline');
+      }else{
+        checkList=[];
+        QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection
+          ('freelancers').where('email',isEqualTo: emailController.text)
+            .get();
+        try{
+          List<Map<String, dynamic>> data
+          = querySnapshot.docs.map((DocumentSnapshot doc) =>
+          doc.data() as Map<String, dynamic>).toList();
+          checkList=data;
+          if(checkList.length>0){
+            box.write('empType','online');
+          }
+      }catch(e){
+          print("EEEE====="+e.toString());
+        }
+        }
+
+    }catch(e){
+      // ignore: avoid_print
+      print("E.......");
+      // ignore: avoid_print
+      print(e);
+      // orderState='error';
+      // ignore: avoid_print
+      print("E.......");
+    }
+    update();
+  }
+
+  userLogin() async {
     print("email==="+emailController.text);
     print("email==="+passController.text);
     final box = GetStorage();
     String roleId = box.read('roleId') ?? 'x';
     print("ROLENEWID===$roleId");
     print("LOGINNN");
-
     loading = true;
     update();
     // final box = GetStorage();
@@ -616,6 +660,7 @@ class AuthController extends GetxController {
             appMessage(text: 'emailNotVerfied'.tr, fail: true);
           }
           print('Received data: $value');
+          checkFreelanceType();
         }).catchError((error) {
 
         });

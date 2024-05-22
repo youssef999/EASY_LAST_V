@@ -41,204 +41,407 @@ class OrderCardWidget extends StatelessWidget {
       status='taskFinish'.tr;
     }
     return InkWell(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey[400]!.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 20,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(11),
-                color: AppColors.whiteColor),
-            child: Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Container(
-             //   clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: AppColors.mainly),
-                child: Column(children: [
-                  SizedBox(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.network(
-                      data['service_image'].toString() ?? "",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  Custom_Text(
-                    text: "serviceName".tr+" : "+data['service_name'].toString() ?? "",
-                    color: AppColors.textColorDark,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-
-                  const SizedBox(height: 7,),
-
-                  ( data['location'].toString().length>1
-                  &&  data['lat'].toString().length>1&& data['lng'].toString().length>1
-                  )?
-                  Row(
-                   // mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(onPressed: (){
-                            controller.openLocation
-                              (double.parse(
-                                data['lat']
-                            )
-                                , double.parse(data['lng']));
-                          }, icon:  Icon(Icons.location_on,
-                          color:AppColors.primary,
-                          size: 35,
-                          )),
-                          const SizedBox(width: 10,),
-                          (data['type']=='offline')?
-                          Custom_Text(text: data['locationName']??'',
-                            fontSize:19,color:AppColors.textColorDark,
-                            fontWeight:FontWeight.w700,
-                          ):
-                          Custom_Text(text: data['location']??" ",
-                            fontSize:19,color:AppColors.textColorDark,
-                            fontWeight:FontWeight.w700,
-                          ),
-                        ],
+      child:Card(
+        child:Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Image.network(data['service_image'].toString() ?? "",
+                fit: BoxFit.fill,
+                ),
+            ),
+        Custom_Text(
+                        text: "serviceName".tr+" : "+data['service_name'].toString() ?? "",
+                        color: AppColors.textColorDark,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      IconButton(onPressed: (){
-                        controller.openLocation(double.parse(
-                            data['lat'].toString()
-                        )
-              , double.parse(data['lng'].toString()));
-                      }, icon:  Icon(Icons.navigate_next_outlined,
-                        color:AppColors.primary,
-                        size: 35,
-                      )),
-                    ],
-                  ):const SizedBox(),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  (data['client_email'].toString().length>1)?
-                   sampleCardData('from'.tr,data['client_email'].toString()):
-                  const SizedBox(),
+                        const SizedBox(height: 7,),
 
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  sampleCardData('date'.tr, data['date'] ?? ""),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  sampleCardData('taskTime'.tr, data['task_time'] + ' ' + days),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  sampleCardData(
-                      'price'.tr, '${data['service_price']} $currency'),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  //'${data['notes']} '
-                  // sampleCardData(
-                  //     'notes'.tr, 'djicjijeijiwjiedimdewidmededeimiwmwkmeksmxkmkmsxw92393939392929'),
-                  // const SizedBox(
-                  //   height: 7,
-                  // ),
-                  sampleCardData('status'.tr, status),
-                  const SizedBox(height: 15),
-                  (data['order_des'].toString().length>1)?
-                  Padding(
-                    padding:  EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        Custom_Text(text: "${'des'.tr} : ",
-                          fontSize:12,color:AppColors.textColorGreyMode,
+                        ( data['location'].toString().length>1
+                        &&  data['lat'].toString().length>1&& data['lng'].toString().length>1
+                        )?
+                        Row(
+                         // mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(onPressed: (){
+                                  controller.openLocation
+                                    (double.parse(
+                                      data['lat']
+                                  )
+                                      , double.parse(data['lng']));
+                                }, icon:  Icon(Icons.location_on,
+                                color:AppColors.primary,
+                                size: 35,
+                                )),
+                                const SizedBox(width: 10,),
+                                (data['type']=='offline')?
+                                Custom_Text(text: data['locationName']??'',
+                                  fontSize:19,color:AppColors.textColorDark,
+                                  fontWeight:FontWeight.w700,
+                                ):
+                                Custom_Text(text: data['location']??" ",
+                                  fontSize:19,color:AppColors.textColorDark,
+                                  fontWeight:FontWeight.w700,
+                                ),
+                              ],
+                            ),
+                            IconButton(onPressed: (){
+                              controller.openLocation(double.parse(
+                                  data['lat'].toString()
+                              )
+                    , double.parse(data['lng'].toString()));
+                            }, icon:  Icon(Icons.navigate_next_outlined,
+                              color:AppColors.primary,
+                              size: 35,
+                            )),
+                          ],
+                        ):const SizedBox(),
+                        const SizedBox(
+                          height: 5,
                         ),
-                        Text(
-                          data['order_des'].toString() ?? "",
-                         style:TextStyle(color:AppColors.primary),
-                         // 'jsdimcsidiwedkewoedkodewdkffffddddfff333333333322eo39292920032033',
-                          maxLines: 5,
+            (data['client_email'].toString().length>1)?
+                Custom_Text(text: 'from'.tr+" : "
+                    +data['client_email'].toString() ?? "",
+                color:AppColors.primary,
+                  fontSize: 15,
+                )
+                :const SizedBox(),
+            const SizedBox(height: 5,),
+            Custom_Text(text:
+                'date'.tr+" : "+data['date'] ?? "" ?? "",
+              color:Colors.grey[700]!,
+              fontSize: 15,
+            ), const SizedBox(height: 5,),
+            Custom_Text(text:
+            'taskTime'.tr+data['task_time'] + ' ' + 'days'.tr,
+              color:AppColors.primary,
+              fontSize: 15,
+            ),
+const SizedBox(height: 5,),
+            Custom_Text(text:
+            'price'.tr+ '${data['service_price']} $currency',
+              color:Colors.grey[700]!,
+              fontSize: 15,
+            ),
+            const SizedBox(height: 5,),
+            Custom_Text(text:
+            'status'.tr +" : "+status,
+              color:AppColors.primary,
+              fontSize: 15,
+            ),
+            const SizedBox(height: 5,),
+            Text(
+              maxLines: 5,
+              'des'.tr + " : " + data['order_des'].toString() ?? "",
+            ), const SizedBox(height: 5,),
+            Text(
+              maxLines: 5,
+              style:  TextStyle( color:AppColors.primary,),
+              'notes'.tr + " : " + data['notes'].toString() ?? "",
+            ),
 
-
-                        ),
-                       // Custom_Text(
-                        //   text:
-                        //   //data['order_des'].toString() ?? "",
-                        //   color: AppColors.greyColor,
-                        //   fontSize: 15,
-                        // ),
-                      ],
-                    ),
-                  ):const SizedBox(),
-                  Text('notes'.tr,style: TextStyle(
-                      color:AppColors.textColorGreyMode,fontSize:18
-                  ),),
-                  const SizedBox(height: 5,),
-                  Text(
-                    maxLines: 5,
-                    data['notes'],
-                    style:const TextStyle(color:AppColors.primaryDarkColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                         if  (data['order_status']=='pending')
-                Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Row(
-                    mainAxisAlignment:MainAxisAlignment.spaceAround,
-                    children: [
-                    CustomButton(
-                      color1:AppColors.success.withOpacity(0.9),
-                      text: 'finish'.tr, onPressed:(){
-                      controller.getUserToken(data['client_email']).then({
-                      controller.changeOrderStatus(data['id'],
-                      'accept',
-                      int.parse( data['service_price'].toString()),
-                      data['client_email']
-                      )
-                      });
-                    }),
-                    const SizedBox(width: 7,),
-                    CustomButton(
-                        color1:AppColors.failed.withOpacity(0.9),
-                      text: 'cancel'.tr, onPressed:(){
-                          controller.getUserToken(data['client_email']).then({
-                          controller.getUserBalance(data['client_email']).then((value) {
-                          controller.changeOrderStatus(data['id'],
-                          'refuse',
-                          int.parse(data['service_price'].toString()),
-                          data['client_email']
-                          );
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                               if  (data['order_status']=='pending')
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Row(
+                          mainAxisAlignment:MainAxisAlignment.spaceAround,
+                          children: [
+                          CustomButton(
+                            color1:AppColors.success.withOpacity(0.9),
+                            text: 'finish'.tr, onPressed:(){
+                            controller.getUserToken(data['client_email']).then({
+                            controller.changeOrderStatus(data['id'],
+                            'accept',
+                            int.parse( data['service_price'].toString()),
+                            data['client_email']
+                            )
+                            });
+                          }),
+                          const SizedBox(width: 7,),
+                          CustomButton(
+                              color1:AppColors.failed.withOpacity(0.9),
+                            text: 'cancel'.tr, onPressed:(){
+                                controller.getUserToken(data['client_email']).then({
+                                controller.getUserBalance(data['client_email']).then((value) {
+                                controller.changeOrderStatus(data['id'],
+                                'refuse',
+                                int.parse(data['service_price'].toString()),
+                                data['client_email']
+                                );
+                                })
+                                });
                           })
-                          });
-                    })
 
-                ]))])
-                  //sampleCardData('des'.tr,data['order_des']),
-              )]),
+                      ]))
 
-              ),
-            )),
+
+                            ]
+
+
+                          )
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: 5, right: 5),
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                    if  (data['order_status']=='pending')
+            //           Padding(
+            //             padding: const EdgeInsets.all(6.0),
+            //             child: Row(
+            //               mainAxisAlignment:MainAxisAlignment.spaceAround,
+            //               children: [
+            //               CustomButton(
+            //                 color1:AppColors.success.withOpacity(0.9),
+            //                 text: 'finish'.tr, onPressed:(){
+            //                 controller.getUserToken(data['client_email']).then({
+            //                 controller.changeOrderStatus(data['id'],
+            //                 'accept',
+            //                 int.parse( data['service_price'].toString()),
+            //                 data['client_email']
+            //                 )
+            //                 });
+            //               }),
+            //               const SizedBox(width: 7,),
+            //               CustomButton(
+            //                   color1:AppColors.failed.withOpacity(0.9),
+            //                 text: 'cancel'.tr, onPressed:(){
+            //                     controller.getUserToken(data['client_email']).then({
+            //                     controller.getUserBalance(data['client_email']).then((value) {
+            //                     controller.changeOrderStatus(data['id'],
+            //                     'refuse',
+            //                     int.parse(data['service_price'].toString()),
+            //                     data['client_email']
+            //                     );
+            //                     })
+            //                     });
+            //               })
+            //
+            //           ]))])
+            //             //sampleCardData('des'.tr,data['order_des']),
+            //         )]),
+            //
+            //         ),
+            //       )),
+            // ),
+
+
+
+
+
+
+
+
+
+                        )],),
+        ) ,
       ),
+      // Padding(
+      //   padding: const EdgeInsets.all(20.0),
+      //   child: Container(
+      //
+      //       decoration: BoxDecoration(
+      //           boxShadow: [
+      //             BoxShadow(
+      //               color: Colors.grey[400]!.withOpacity(0.5),
+      //               spreadRadius: 3,
+      //               blurRadius: 20,
+      //               offset: const Offset(0, 3), // changes position of shadow
+      //             ),
+      //           ],
+      //           borderRadius: BorderRadius.circular(11),
+      //           color: AppColors.whiteColor),
+      //       child: Padding(
+      //         padding: const EdgeInsets.all(0.0),
+      //         child: Container(
+      //        //   clipBehavior: Clip.antiAlias,
+      //           decoration: BoxDecoration(
+      //               borderRadius: BorderRadius.circular(12),
+      //               color: AppColors.mainly),
+      //           child: Column(children: [
+      //             SizedBox(
+      //               height: 200,
+      //               width: MediaQuery.of(context).size.width,
+      //               child: Image.network(
+      //                 data['service_image'].toString() ?? "",
+      //                 fit: BoxFit.fill,
+      //               ),
+      //             ),
+      //             const SizedBox(
+      //               height: 7,
+      //             ),
+      //             Custom_Text(
+      //               text: "serviceName".tr+" : "+data['service_name'].toString() ?? "",
+      //               color: AppColors.textColorDark,
+      //               fontSize: 20,
+      //               fontWeight: FontWeight.bold,
+      //             ),
+      //
+      //             const SizedBox(height: 7,),
+      //
+      //             ( data['location'].toString().length>1
+      //             &&  data['lat'].toString().length>1&& data['lng'].toString().length>1
+      //             )?
+      //             Row(
+      //              // mainAxisAlignment:MainAxisAlignment.spaceBetween,
+      //               children: [
+      //                 Row(
+      //                   children: [
+      //                     IconButton(onPressed: (){
+      //                       controller.openLocation
+      //                         (double.parse(
+      //                           data['lat']
+      //                       )
+      //                           , double.parse(data['lng']));
+      //                     }, icon:  Icon(Icons.location_on,
+      //                     color:AppColors.primary,
+      //                     size: 35,
+      //                     )),
+      //                     const SizedBox(width: 10,),
+      //                     (data['type']=='offline')?
+      //                     Custom_Text(text: data['locationName']??'',
+      //                       fontSize:19,color:AppColors.textColorDark,
+      //                       fontWeight:FontWeight.w700,
+      //                     ):
+      //                     Custom_Text(text: data['location']??" ",
+      //                       fontSize:19,color:AppColors.textColorDark,
+      //                       fontWeight:FontWeight.w700,
+      //                     ),
+      //                   ],
+      //                 ),
+      //                 IconButton(onPressed: (){
+      //                   controller.openLocation(double.parse(
+      //                       data['lat'].toString()
+      //                   )
+      //         , double.parse(data['lng'].toString()));
+      //                 }, icon:  Icon(Icons.navigate_next_outlined,
+      //                   color:AppColors.primary,
+      //                   size: 35,
+      //                 )),
+      //               ],
+      //             ):const SizedBox(),
+      //             const SizedBox(
+      //               height: 5,
+      //             ),
+      //             (data['client_email'].toString().length>1)?
+      //              sampleCardData('from'.tr,data['client_email'].toString()):
+      //             const SizedBox(),
+      //
+      //             const SizedBox(
+      //               height: 7,
+      //             ),
+      //             sampleCardData('date'.tr, data['date'] ?? ""),
+      //             const SizedBox(
+      //               height: 7,
+      //             ),
+      //             sampleCardData('taskTime'.tr, data['task_time'] + ' ' + days),
+      //             const SizedBox(
+      //               height: 7,
+      //             ),
+      //             sampleCardData(
+      //                 'price'.tr, '${data['service_price']} $currency'),
+      //             const SizedBox(
+      //               height: 7,
+      //             ),
+      //             //'${data['notes']} '
+      //             // sampleCardData(
+      //             //     'notes'.tr, 'djicjijeijiwjiedimdewidmededeimiwmwkmeksmxkmkmsxw92393939392929'),
+      //             // const SizedBox(
+      //             //   height: 7,
+      //             // ),
+      //             sampleCardData('status'.tr, status),
+      //             const SizedBox(height: 15),
+      //             (data['order_des'].toString().length>1)?
+      //             Padding(
+      //               padding:  EdgeInsets.all(5.0),
+      //               child: Column(
+      //                 children: [
+      //                   Custom_Text(text: "${'des'.tr} : ",
+      //                     fontSize:12,color:AppColors.textColorGreyMode,
+      //                   ),
+      //                   Text(
+      //                     data['order_des'].toString() ?? "",
+      //                    style:TextStyle(color:AppColors.primary),
+      //                    // 'jsdimcsidiwedkewoedkodewdkffffddddfff333333333322eo39292920032033',
+      //                     maxLines: 5,
+      //
+      //
+      //                   ),
+      //                  // Custom_Text(
+      //                   //   text:
+      //                   //   //data['order_des'].toString() ?? "",
+      //                   //   color: AppColors.greyColor,
+      //                   //   fontSize: 15,
+      //                   // ),
+      //                 ],
+      //               ),
+      //             ):const SizedBox(),
+      //             Text('notes'.tr,style: TextStyle(
+      //                 color:AppColors.textColorGreyMode,fontSize:18
+      //             ),),
+      //             const SizedBox(height: 5,),
+      //             Text(
+      //               maxLines: 5,
+      //               data['notes'],
+      //               style:const TextStyle(color:AppColors.primaryDarkColor,
+      //                 fontWeight: FontWeight.w500,
+      //               ),
+      //             ),
+      //             const SizedBox(
+      //               height: 15,
+      //             ),
+      //             Padding(
+      //               padding: const EdgeInsets.only(left: 5, right: 5),
+      //               child: Row(
+      //                 mainAxisAlignment: MainAxisAlignment.center,
+      //                 children: [
+      //                    if  (data['order_status']=='pending')
+      //           Padding(
+      //             padding: const EdgeInsets.all(6.0),
+      //             child: Row(
+      //               mainAxisAlignment:MainAxisAlignment.spaceAround,
+      //               children: [
+      //               CustomButton(
+      //                 color1:AppColors.success.withOpacity(0.9),
+      //                 text: 'finish'.tr, onPressed:(){
+      //                 controller.getUserToken(data['client_email']).then({
+      //                 controller.changeOrderStatus(data['id'],
+      //                 'accept',
+      //                 int.parse( data['service_price'].toString()),
+      //                 data['client_email']
+      //                 )
+      //                 });
+      //               }),
+      //               const SizedBox(width: 7,),
+      //               CustomButton(
+      //                   color1:AppColors.failed.withOpacity(0.9),
+      //                 text: 'cancel'.tr, onPressed:(){
+      //                     controller.getUserToken(data['client_email']).then({
+      //                     controller.getUserBalance(data['client_email']).then((value) {
+      //                     controller.changeOrderStatus(data['id'],
+      //                     'refuse',
+      //                     int.parse(data['service_price'].toString()),
+      //                     data['client_email']
+      //                     );
+      //                     })
+      //                     });
+      //               })
+      //
+      //           ]))])
+      //             //sampleCardData('des'.tr,data['order_des']),
+      //         )]),
+      //
+      //         ),
+      //       )),
+      // ),
       onTap: () {
         //Get.to(ServiceDetailsView(service: data));
       },

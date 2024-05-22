@@ -49,18 +49,18 @@ class _FreelancerServicesViewState extends State<FreelancerServicesView> {
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<FreelancerServicesController>(
           builder: (_) {
-            return ListView(children: [
-
-
+            return ListView(
+              //  physics: const NeverScrollableScrollPhysics(),
+                children: [
              ( controller.serviceList.isNotEmpty)?
               GetBuilder<FreelancerServicesController>(builder: (_) {
                 return GridView.builder(
                     itemCount: controller.serviceList.length,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio: 0.89, crossAxisSpacing: 4,
-
-
+                        crossAxisCount: 2, childAspectRatio: 0.89,
+                      crossAxisSpacing: 4,
                         //mainAxisExtent: 1
                         ),
                     itemBuilder: (context, index) {

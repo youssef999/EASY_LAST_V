@@ -13,6 +13,7 @@ class MyLocal implements Translations{
       {
         "ar":{
 
+          "days":" يوم ",
           "serviceName":"اسم الخدمة",
 
           "portImages":"عرض معرض الاعمال ",
@@ -362,6 +363,8 @@ class MyLocal implements Translations{
         },
         "en":{
 
+          "days":"Days",
+
           "noProfit":"No Profit Now",
 
           "portImages":" View Portfolio ",
@@ -690,7 +693,9 @@ Proudly made in Algeria
         }
        ,"fr":{
 
-          "noProfit":"aucun bénéfice",
+        "days":"jours",
+
+        "noProfit":"aucun bénéfice",
 
         "portImages":" Voir le portefeuille ",
 

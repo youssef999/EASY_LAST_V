@@ -77,16 +77,16 @@ getFreelancerData() async{
 
     final box=GetStorage();
      //  box.write('empType', 'offline');
-     String type=box.read('empType')??"online";
+     String type=box.read('empType')??"offline";
 
      print("TYPEEEEE==="+type);
 
      if(type=='online'){
-     print("FREELANCER........XXX......");
+     print("FREELANCER.......online......");
 
   String email=box.read('email')??'';
-
-  String roleId=box.read('');
+     print("EMAIL==="+email);
+  //String roleId=box.read('');
   freelancerData = [];
 
   QuerySnapshot querySnapshot =
@@ -115,22 +115,22 @@ getFreelancerData() async{
      }else{
 
 
-print("FREELANCER........XXX......");
+print("FREELANCER........offline......");
 
   String email=box.read('email')??'';
-
-
+  print("EMAIL==="+email);
   freelancerData = [];
   QuerySnapshot querySnapshot =
-  await FirebaseFirestore.instance.collection('employees')
+  await FirebaseFirestore.instance
+      .collection('employees')
       .where('email',isEqualTo:email)
       .get();
   try {
-    List<Map<String, dynamic>> data = querySnapshot.docs
+    List<Map<String, dynamic>> data =
+    querySnapshot.docs
         .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
         .toList();
     freelancerData = data;
-
   } catch (e) {
     // ignore: avoid_print
     print("E.......");
@@ -142,7 +142,6 @@ print("FREELANCER........XXX......");
   }
   print("FFFDATAAAAAAAA==$freelancerData");
   update();
-
      }
 
   
@@ -294,14 +293,16 @@ print("FREELANCER........XXX......");
     String type=box.read('empType')??"online";
     print("TYPE==="+type);
     isLoading=true;
-
     update();
 
-    print("IMAGEEE=========${downloadUrls[0]}");
+    print("LENGTH===img=="+downloadUrls.length.toString());
+    print("ffreeDATA=="+freelancerData[0].toString());
+
+    //print("IMAGEEE=========${downloadUrls[0]}");
 
    // final box=GetStorage();
     
-    String freelancer_email=box.read('email')??'x';
+String freelancer_email=box.read('email')??'x';
 
 const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
   Random random = Random();
@@ -321,13 +322,15 @@ try{
     'price':servicePriceController.text,
     'cat':selectedCategory,
     'freelancer_email':freelancer_email,
-     'freelancer_image':freelancerData[0]['image'].toString(),
+   'freelancer_image':freelancerData[0]['image'].toString(),
      //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4i_rii7NjuzWcPQgmVtyAsckGk-YPxgrDgwGQlC772A&s',
      'freelancer_name':freelancerData[0]['name'].toString(),
      'type':'top',
      'comment':[],
      'rate':[],
-     'image':downloadUrls[0],
+     'image':
+     downloadUrls.length>0?
+     downloadUrls[0]:'',
      'images':downloadUrls
     //'service_image':downloadUrls
    // 'service_image':downloadUrls[0],
@@ -342,7 +345,7 @@ try{
   isLoading=false;
   update();
   // ignore: avoid_print
-  print(e);
+  print("Service Error======"+e.toString());
   appMessage(text: "serviceFail".tr,fail: true);
 }
   Get.offAll(RootView());

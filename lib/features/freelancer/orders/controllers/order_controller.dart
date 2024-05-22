@@ -25,14 +25,7 @@ TextEditingController noteController =TextEditingController();
     super.onInit();
   }
 
-
- 
- 
-
-
-
-
-getFreelancerOrders() async{
+  getFreelancerOrders() async{
 
   final box=GetStorage();
 
@@ -75,14 +68,10 @@ getFreelancerOrders() async{
   }
 
   int userBalance=0;
-  
-
 
   getUserBalance(String email)async{
 
- 
- userBalance=0;
-
+    userBalance=0;
  QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('wallet').where('email',isEqualTo: email)

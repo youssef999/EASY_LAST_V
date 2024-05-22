@@ -44,7 +44,6 @@ import 'features/home/views/all_services.dart';
   const MainApp({super.key});
   @override
   State<MainApp> createState() => _MainAppState();
-  
 }
 
  class _MainAppState extends State<MainApp> {
