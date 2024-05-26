@@ -7,12 +7,11 @@ import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/checkout/controllers/checkout_controller.dart';
 import 'package:freelancerApp/features/payment/controllers/pay_controller.dart';
 import 'package:freelancerApp/features/payment/controllers/payment_controller.dart';
+import 'package:freelancerApp/features/payment/views/last_pay/map/last_web2.dart';
 import 'package:freelancerApp/features/root/view/root_view.dart';
 import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
-
 
 class PaymentView extends StatefulWidget {
 
@@ -37,9 +36,7 @@ class _PaymentViewState extends State<PaymentView> {
   
   @override
   void initState() {
-
    // controller2.createCheckout();
-
    //controller.getClientData(widget.data,widget.price);
    //controller.firstApi();
    super.initState();
@@ -62,44 +59,52 @@ class _PaymentViewState extends State<PaymentView> {
                 GetBuilder<PayController>(
                   builder: (_) {
                     return SizedBox(
-                    height: 1500,
-                    child: WebView(
-                         navigationDelegate: (NavigationRequest request) {
+                      height: 1500,
+                      child: WebView(
+                        navigationDelegate: (NavigationRequest request) {
                           print("req==${request.url}");
-          // Implement your navigation delegation logic here
-          if (request.url.startsWith('https://pay.chargily.dz/test/payments/success')) {
-            Future.delayed(const Duration(seconds: 2), () {
-               controller.addBalanceToFreelancer
-              (widget.data['freelancer_email']).then((value) {
-                  controller.addOrderToFirebase2(widget.data);
-              }).then((value) {
 
-                Future.delayed(const Duration(seconds: 3)).then((value) {
-     Get.offNamed(Routes.ROOT);
-            appMessage(text: 'payDone'.tr, fail: false);
-                });
-              });
-            
-            });
-           
-            // Allow navigation if URL starts with 'https://example.com'
-          return NavigationDecision.prevent;
-          } else {
+                          Future.delayed(const Duration(seconds: 2), () {
 
-             Get.offAll(RootView());
-            appMessage(text: 'payError'.tr, fail: true);
-          return NavigationDecision.prevent;
-            // Block navigation for all other URLs
-            //return NavigationDecision.prevent;
-          }
-        },
-                                initialUrl: widget.url,
-                                //'https://maktapp.credit/pay/MCPaymentPage?paymentID=TV3VVKTQL8SW33300997771TV',
-                                //'https://pub.dev/packages/webview_flutter/example',
-                                //controller.webUrl, // Enter your URL here
-                                javascriptMode: JavascriptMode.unrestricted, // Enable JavaScript
-                              ),
-                                  );
+                          }).then((value) {
+
+                            Get.to(LastWebView2
+                              (url: request.url, data: widget.data,
+                                price: widget.price));
+                          });
+                          return NavigationDecision.prevent;
+
+                          // Implement your navigation delegation logic here
+                          //                 if (request.url.startsWith('https://pay.chargily.dz/test/payments/success')) {
+                          //
+                          //   Future.delayed(const Duration(seconds: 2), () {
+                          //      controller.addBalanceToFreelancer
+                          //     (widget.data['freelancer_email']).then((value) {
+                          //         controller.addOrderToFirebase(widget.data);
+                          //     }).then((value) {
+                          //         Get.offNamed(Routes.ROOT);
+                          //   appMessage(text: 'payDone'.tr, fail: false);
+                          //     });
+                          //   });
+                          //
+                          //   // Allow navigation if URL starts with 'https://example.com'
+                          // return NavigationDecision.prevent;
+                          // } else {
+                          //
+                          //    Get.offAll(RootView());
+                          //   appMessage(text: 'payError'.tr, fail: true);
+                          // return NavigationDecision.prevent;
+                          //   // Block navigation for all other URLs
+                          //   //return NavigationDecision.prevent;
+                          // }
+                        },
+                        initialUrl: widget.url,
+                        //'https://maktapp.credit/pay/MCPaymentPage?paymentID=TV3VVKTQL8SW33300997771TV',
+                        //'https://pub.dev/packages/webview_flutter/example',
+                        //controller.webUrl, // Enter your URL here
+                        javascriptMode: JavascriptMode.unrestricted, // Enable JavaScript
+                      ),
+                    );
                   }
                 )
             

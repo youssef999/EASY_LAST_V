@@ -32,6 +32,7 @@ class _SignUpViewState extends State<SignUpView> {
       box.write('location', '');
     }
     controller.getLocationPermission();
+   // controller.getAllCities();
     super.initState();
   }
 
@@ -1022,6 +1023,8 @@ class _SignUpViewState extends State<SignUpView> {
                           },
                         ),
                       ),
+
+
                     ],
                   ),
                 ),

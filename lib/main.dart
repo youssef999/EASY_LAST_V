@@ -5,6 +5,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freelancerApp/core/localization/local.dart';
@@ -12,6 +13,7 @@ import 'package:freelancerApp/features/root/view/root_view.dart';
 import 'package:freelancerApp/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'features/home/views/all_services.dart';
 
  void main() async {
@@ -37,6 +39,10 @@ import 'features/home/views/all_services.dart';
   else{
     box.write('locale','ar');
   }
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    WebView.platform = SurfaceAndroidWebView();
+  }
+
   runApp(const MainApp());
 }
 

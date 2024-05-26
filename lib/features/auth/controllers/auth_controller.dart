@@ -60,8 +60,7 @@ class AuthController extends GetxController {
     getDeviceToken();
     getAllCategories();
     getAllCountries();
-    getAllCities();
-
+   getAllCities();
     super.onInit();
   }
 
@@ -390,22 +389,18 @@ class AuthController extends GetxController {
 
   getAllCities() async {
     print("ccc");
-
     cityList = [];
-
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('city').get();
     try {
       List<Map<String, dynamic>> data = querySnapshot.docs
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
           .toList();
-
       cityList = data;
-
       for (int i = 0; i < cityList.length; i++) {
         cityNames.add(cityList[i]['name']);
       }
-
+      //selectedCity=cityNames[0];
       print("city===$cityList");
     } catch (e) {
       // ignore: avoid_print

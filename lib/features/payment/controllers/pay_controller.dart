@@ -75,7 +75,9 @@ class PayController extends GetxController{
   }else{
     type='freelancers';
   }
-String email=box.read('email');
+
+
+ String email=box.read('email');
  userData=[];
 
  print("TYPE===$type");
@@ -141,7 +143,7 @@ QuerySnapshot querySnapshot =
   }
 
   createCheckout2(DocumentSnapshot data,num amount) async {
-     print("GET API.......");
+     print("GET API.pay22......");
      var url = Uri.parse(
          'https://pay.chargily.net/api/v2/products');
      var headers = {
@@ -357,7 +359,8 @@ QuerySnapshot querySnapshot =
      update();
      print("CHECKOUT==="+checkoutUrl);
 
-     Get.to(PaymentView2(url: checkoutUrl, data: data, price: amount));
+     Get.to(PaymentView2(
+         url: checkoutUrl, data: data, price: amount));
      // Get.to(PaymentView(url: webUrl,data: data,
      //   price: amount,
      // ));
