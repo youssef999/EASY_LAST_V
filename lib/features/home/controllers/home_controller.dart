@@ -33,6 +33,18 @@ class HomeController extends GetxController {
     AppColors.whiteColor,
   ].obs;
 
+  bool homeLoading=false;
+
+
+  getDataAfterLoading()async{
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      homeLoading=true;
+      update();
+    });
+  }
+
+
+
   int? balance = 0; // Variable to store the balance
   Future<QuerySnapshot<Map<String, dynamic>>> getUserDataByEmail(
       String email) async {
@@ -130,7 +142,6 @@ print('qwe ${searchResults}');
     sliderImagesList.value = snapshot.docs.map((doc) => doc['image']).toList();
     update();
   }
-
   void updateData(String docId) {
     DocumentReference docRef = firestore.collection('user').doc(docId);
     docRef.update({'price': 0, 'lock': false}).then((value) {
@@ -145,15 +156,14 @@ print('qwe ${searchResults}');
   }
 
 
-  @override
-  void onInit() async {
-    getCurrentLocation();
-    await fetchSliderImages();
-    data();
-    searchResults();
-
-    super.onInit();
-  }
+  // @override
+  // void onInit() async {
+  //    await fetchSliderImages();
+  //   data();
+  //   getCurrentLocation();
+  //   searchResults();
+  //   super.onInit();
+  // }
 
 Position? currentPosition;
 double currentLat=0.0;

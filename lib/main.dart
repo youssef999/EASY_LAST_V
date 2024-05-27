@@ -70,7 +70,6 @@ List<Map<String, dynamic>> tokenList = [];
        for(int i=0;i<data.length;i++){
          tokenList.add(data[i]['token']);
        }
-
       }catch(e){
         print("E.......");
         print(e);

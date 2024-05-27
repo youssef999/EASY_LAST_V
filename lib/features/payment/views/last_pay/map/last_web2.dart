@@ -46,7 +46,7 @@ class _LastWebViewState extends State<LastWebView2> {
           child:  GetBuilder<PayController>(
               builder: (_) {
                 return SizedBox(
-                  height: 500,
+                  height: 900,
                   child: WebView(
                     javascriptMode: JavascriptMode.unrestricted,
                     onWebViewCreated: (WebViewController webViewController) {

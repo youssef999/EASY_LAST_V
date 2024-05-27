@@ -1,5 +1,4 @@
 // ignore_for_file: unused_local_variable
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_strings.dart';
@@ -128,16 +127,16 @@ class _SignUpViewState extends State<SignUpView> {
                                   },
                                   style: controller.isSelected.value == 0
                                       ? ButtonStyle(
-                                          side: MaterialStateProperty.all(
+                                          side: WidgetStateProperty.all(
                                               const BorderSide(
                                                   width: 1,
                                                   color: Colors.white)),
                                           backgroundColor:
-                                              MaterialStatePropertyAll(
+                                              WidgetStatePropertyAll(
                                                   AppColors.darkColor))
                                       : const ButtonStyle(
                                           backgroundColor:
-                                              MaterialStatePropertyAll(
+                                              WidgetStatePropertyAll(
                                                   AppColors.whiteColor)),
                                   child: Text(
                                     'freelancer'.tr,

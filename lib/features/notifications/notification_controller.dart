@@ -56,6 +56,7 @@ class NotificationController extends GetxController{
           body: jsonEncode(officialNotificationFormat),
         ).then((value) {
           print('NOTIFICATION SENT==$value');
+          print("token======"+token);
         });
       }
       catch(e){
@@ -63,7 +64,6 @@ class NotificationController extends GetxController{
       //}
     }
     return   responseNotification;
-
   }
 
 }

@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     String email = box.read('email') ?? 'x';
-    Future.delayed(const Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       if (email == 'x') {
         Get.offNamed(Routes.LOGIN);
       } else {
@@ -40,7 +40,10 @@ class _SplashViewState extends State<SplashView> {
               AppAssets.logo,
               fit: BoxFit.cover,
             ),
-          ),const CircularProgressIndicator.adaptive(backgroundColor: Color.fromARGB(255, 194, 194, 194),)
+          ),const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator.adaptive(backgroundColor: Color.fromARGB(255, 194, 194, 194),),
+          )
         ],
       ),
 

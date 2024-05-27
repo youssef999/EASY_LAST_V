@@ -100,7 +100,7 @@ class LoginView extends GetView<AuthController> {
 
                         controller.getRoleIdByUser().then((value) {
                           print("role id done");
-                          Future.delayed(const Duration(seconds: 2))
+                          Future.delayed(const Duration(seconds: 1))
                               .then((value) {
 
                             {

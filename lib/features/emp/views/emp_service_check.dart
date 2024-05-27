@@ -35,9 +35,12 @@ class _CheckOutViewState extends State<EmpCheckoutView2> {
 
   @override
   void initState() {
+    print("DATA======="+widget.data.toString());
+    print("DATA===22===="+widget.data2['freelancer_email'].toString());
     print("HEREEEEE........");
     locationName= box.read('location').toString().obs;
     controller.getUserName();
+    controller.getEmpToken(widget.data['email'].toString());
     controller.getLocationPermission();
     super.initState();
   }

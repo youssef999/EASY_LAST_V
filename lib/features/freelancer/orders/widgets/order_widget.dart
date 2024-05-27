@@ -47,7 +47,7 @@ class OrderCardWidget extends StatelessWidget {
           child: Column(children: [
             SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(data['service_image'].toString() ?? "",
+                child: Image.network(data['service_image'].toString(),
                 fit: BoxFit.fill,
                 ),
             ),
@@ -112,7 +112,7 @@ class OrderCardWidget extends StatelessWidget {
                 :const SizedBox(),
             const SizedBox(height: 5,),
             Custom_Text(text:
-                'date'.tr+" : "+data['date'] ?? "" ?? "",
+                'date'.tr+" : "+data['date'] ?? "",
               color:Colors.grey[700]!,
               fontSize: 15,
             ), const SizedBox(height: 5,),

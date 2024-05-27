@@ -34,7 +34,7 @@ class EmpMoney extends StatefulWidget {
            builder: (_) {
              return Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Column(
+               child: ListView(
                  children: [
                    const SizedBox(height: 40,),
                  Custom_Text(text: 'total'.tr+" = "+controller.finalMoney.toString()
@@ -50,6 +50,7 @@ class EmpMoney extends StatefulWidget {
 
                    (controller.orderList.isNotEmpty)?
                    ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                      shrinkWrap: true,
                        itemCount: controller.orderList.length,
                        itemBuilder: (context,index){
@@ -64,7 +65,6 @@ class EmpMoney extends StatefulWidget {
                            ),
                            const SizedBox(height: 6,),
                            Custom_Text(text:
-
                                "price".tr+" "+
                            controller.orderList[index]['service_price'].toString()+' '+currency,
                            color: Colors.blue,fontSize: 16,

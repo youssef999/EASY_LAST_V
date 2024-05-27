@@ -32,6 +32,7 @@ class _CheckOutViewState extends State<EmpCheckoutView> {
   void initState() {
     locationName= box.read('location').toString().obs;
     controller.getUserName();
+       controller.getEmpToken(widget.data['email']);
     controller.getLocationPermission();
     super.initState();
   }

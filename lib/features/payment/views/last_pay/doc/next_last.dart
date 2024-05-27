@@ -47,7 +47,7 @@ class _LastWebViewState extends State< NextWebView> {
           child:  GetBuilder<PayController>(
               builder: (_) {
                 return SizedBox(
-                  height: 500,
+                  height: 900,
                   child: WebView(
                     javascriptMode: JavascriptMode.unrestricted,
                     onWebViewCreated: (WebViewController webViewController) {
@@ -61,12 +61,19 @@ class _LastWebViewState extends State< NextWebView> {
                       print("req==${request.url}");
                       //https://pay.chargily.dz/payment/edahabia-success?expires=1716681828&signature=a259ff733244622eefb8f8de7788446b98e174ac6bd245cc952c8c7d14edaf06&orderId=b5639810-fd46-4da3-9398-1d08de6acbad
                       // Implement your navigation delegation logic here
-                      if (request.url.startsWith('https://pay.chargily.dz/payment/edahabia-success')) {
+                      if (request.url.startsWith('https://pay.chargily.dz/payment/edahabia-success')
+                      
+                        ||  request.url.startsWith('https://pay.chargily.dz/payment/cib-success')
+                      ) {
                         print("Success.....");
                         Future.delayed(const Duration(seconds: 2), () {
+                            controller.getFreelancerToken(widget.data['freelancer_email']);
                           controller.addBalanceToFreelancer
                             (widget.data['freelancer_email']).then((value) {
+
+                       
                             controller.addOrderToFirebase(widget.data);
+                
                           }).then((value) {
                             Get.offNamed(Routes.ROOT);
                             appMessage(text: 'payDone'.tr, fail: false);
@@ -76,6 +83,7 @@ class _LastWebViewState extends State< NextWebView> {
                         // Allow navigation if URL starts with 'https://example.com'
                         return NavigationDecision.prevent;
                       } else {
+                    
                         print("FAIL.....");
                          Get.offAll(RootView());
                         // appMessage(text: 'payError'.tr, fail: true);

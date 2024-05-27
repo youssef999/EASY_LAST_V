@@ -979,7 +979,6 @@ class AuthController extends GetxController {
         print('Error uploading image to Firebase Storage: $e');
       }
     }
-
     return downloadUrls;
   }
 }

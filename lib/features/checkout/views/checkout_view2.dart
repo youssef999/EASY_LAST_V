@@ -32,6 +32,7 @@ class _CheckOutViewState extends State<CheckOutView2> {
   @override
   void initState() {
    controller.getUserName();
+  controller.getFreelancerToken(widget.data['freelancer_email']);
    controller.getFreelancerBalance(widget.data['freelancer_email']);
     super.initState();
   }

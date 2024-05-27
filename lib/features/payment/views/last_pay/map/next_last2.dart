@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/const/app_message.dart';
@@ -11,8 +7,17 @@ import 'package:freelancerApp/features/root/view/root_view.dart';
 import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../../../../checkout/controllers/checkout_controller.dart';
+
+/*
+6280703020505936
+
+08.24
+
+Bouricha ahmed nadim
+
+806
+ */
 
 class  NextWebView2 extends StatefulWidget {
   Map<String,dynamic> data;
@@ -39,7 +44,6 @@ class _LastWebViewState extends State< NextWebView2> {
   @override
   Widget build(BuildContext context) {
     CheckoutController controller=Get.put(CheckoutController());
-
     return Scaffold(
       appBar:CustomAppBar('', context, false),
       body:Padding(
@@ -47,7 +51,7 @@ class _LastWebViewState extends State< NextWebView2> {
           child:  GetBuilder<PayController>(
               builder: (_) {
                 return SizedBox(
-                  height: 500,
+                  height: 900,
                   child: WebView(
                     javascriptMode: JavascriptMode.unrestricted,
                     onWebViewCreated: (WebViewController webViewController) {
@@ -58,12 +62,16 @@ class _LastWebViewState extends State< NextWebView2> {
                       // webViewController.setJavaScriptEnabled(true);
                     },
                     navigationDelegate: (NavigationRequest request) {
+                      //https://pay.chargily.dz/payment/cib-failure
                       print("req==${request.url}");
                       //https://pay.chargily.dz/payment/edahabia-success?expires=1716681828&signature=a259ff733244622eefb8f8de7788446b98e174ac6bd245cc952c8c7d14edaf06&orderId=b5639810-fd46-4da3-9398-1d08de6acbad
                       // Implement your navigation delegation logic here
-                      if (request.url.startsWith('https://pay.chargily.dz/payment/edahabia-success')) {
+                 if (request.url.startsWith('https://pay.chargily.dz/payment/edahabia-success')
+                  ||  request.url.startsWith('https://pay.chargily.dz/payment/cib-success')
+                 ) {
                         print("Success.....");
                         Future.delayed(const Duration(seconds: 2), () {
+                           controller.getFreelancerToken(widget.data['freelancer_email']);
                           controller.addBalanceToFreelancer
                             (widget.data['freelancer_email']).then((value) {
                             controller.
@@ -71,6 +79,7 @@ class _LastWebViewState extends State< NextWebView2> {
                           }).then((value) {
                             Get.offNamed(Routes.ROOT);
                             appMessage(text: 'payDone'.tr, fail: false);
+                             
                           });
                         });
 

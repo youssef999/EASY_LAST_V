@@ -14,218 +14,253 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatefulWidget{
+
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+//GetView<HomeController> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  HomeView({super.key});
+
+
+HomeController controller=Get.put(HomeController());
+
+@override
+  void initState() {
+
+    controller. fetchSliderImages();
+    controller.data();
+    controller.getCurrentLocation();
+    controller.getDataAfterLoading();
+    controller. searchResults();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.mainly,
-      appBar: CustomAppBar('home'.tr, context, true),
-      key: scaffoldKey,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 8,
-              ),
-              const AdvWidget(),
-              GetBuilder<HomeController>(builder: (_) {
-                return Column(
-                  children: [
-                    Container(
-                      height: 50,
-                      padding: const EdgeInsets.only(left: 10, right: 10),
 
-                      child: TextFormField(
-                        controller: controller.searchController,
-                        onChanged: (value) {
-                          Get.to(const SearchView());
-                          controller.clearSearch();
-                          controller.searchController.text='';
-                         // controller.isSearching.value=
-                          // print('$value');
-                           //controller.searchProducts(value);
-                        },
-                        decoration: InputDecoration(
-                          prefixIcon: InkWell(child: const Icon(Icons.search),
-                          onTap:(){
-                            Get.to(const SearchView());
-                          },
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'search'.tr+"...",
-                          hintStyle: const TextStyle(height: 1),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                      ),
-                    ),
-                    if (controller.isSearching.value &&
-                        controller.searchResults.isNotEmpty)
-                      GestureDetector(
-                        onTap: controller.clearSearch,
-                        child: ListView(
-                          shrinkWrap: true,
-                          physics:const NeverScrollableScrollPhysics(),
-                          padding:const EdgeInsets.all(10),
-                          children: controller.searchResults.map((document) {
-                            final product =
-                                document.data() as Map<String, dynamic>;
-                            return Container(
-                              margin:
-                                  const EdgeInsets.only(top: 0, bottom: 2),
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5)),
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      style: BorderStyle.solid,
-                                      color: Colors.white,
-                                      width: 1)),
-                              child: ListTile(
-                                title: Text(product['name'],style: GoogleFonts.cairo(),),
-                                trailing: Image.network(product['image'],width: 100,),
-                                onTap: () {
-                                  Get.toNamed(Routes.SERVICEDETAILS,arguments: document);
-                                },
+
+
+    return GetBuilder<HomeController>(
+      builder: (_) {
+        return Scaffold(
+          backgroundColor: AppColors.mainly,
+          appBar: CustomAppBar('home'.tr, context, true),
+          key: scaffoldKey,
+          body: 
+          
+          
+              (controller.homeLoading==true)?
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const AdvWidget(),
+                  GetBuilder<HomeController>(builder: (_) {
+                    return Column(
+                      children: [
+                        Container(
+                          height: 50,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+        
+                          child: TextFormField(
+                            controller: controller.searchController,
+                            onChanged: (value) {
+                              Get.to(const SearchView());
+                              controller.clearSearch();
+                              controller.searchController.text='';
+                             // controller.isSearching.value=
+                              // print('$value');
+                               //controller.searchProducts(value);
+                            },
+                            decoration: InputDecoration(
+                              prefixIcon: InkWell(child: const Icon(Icons.search),
+                              onTap:(){
+                                Get.to(const SearchView());
+                              },
                               ),
-                            );
-                          }).toList(),
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: 'search'.tr+"...",
+                              hintStyle: const TextStyle(height: 1),
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                  ],
-                );
-              }),
-              const SizedBox(
-                height: 16,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:7.0,right:7,top:3),
-                child: Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'services'.tr,
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.cairo(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),InkWell(
-                      child: Text(
-                        'allServices'.tr,
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.cairo(
-                          fontSize: 17,
-                          color:AppColors.textColorGreyMode,
-                          fontWeight: FontWeight.bold,
+                        if (controller.isSearching.value &&
+                            controller.searchResults.isNotEmpty)
+                          GestureDetector(
+                            onTap: controller.clearSearch,
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics:const NeverScrollableScrollPhysics(),
+                              padding:const EdgeInsets.all(10),
+                              children: controller.searchResults.map((document) {
+                                final product =
+                                    document.data() as Map<String, dynamic>;
+                                return Container(
+                                  margin:
+                                      const EdgeInsets.only(top: 0, bottom: 2),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)),
+                                      color: Colors.white,
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.white,
+                                          width: 1)),
+                                  child: ListTile(
+                                    title: Text(product['name'],style: GoogleFonts.cairo(),),
+                                    trailing: Image.network(product['image'],width: 100,),
+                                    onTap: () {
+                                      Get.toNamed(Routes.SERVICEDETAILS,arguments: document);
+                                    },
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                      ],
+                    );
+                  }),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:7.0,right:7,top:3),
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'services'.tr,
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.cairo(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),InkWell(
+                          child: Text(
+                            'allServices'.tr,
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.cairo(
+                              fontSize: 17,
+                              color:AppColors.textColorGreyMode,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          onTap:(){
+                            Get.to(const AllServicesView());
+                          },
                         ),
-                      ),
-                      onTap:(){
-                        Get.to(const AllServicesView());
-                      },
+                      ],
                     ),
-                  ],
+                  ),
+                  const FireBaseView(
+                    typeFilter: 'top',
+                    collection: 'services',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:7.0,right:7,top:3),
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'freelancers'.tr,
+                          style: GoogleFonts.cairo(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ), InkWell(
+                          child: Text(
+                            'seeAll'.tr,
+                            style: GoogleFonts.cairo(
+                              fontSize: 17,
+                              color:AppColors.textColorGreyMode,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),onTap:(){
+                            Get.to(const AllFreelancersView());
+        
+                        },
+                        ),
+                      ],
+                    ),
+                  ),
+        
+                  const FireBaseView(
+                    typeFilter: 'normal',
+                    collection: 'freelancers',
+                  ),
+        
+        const SizedBox(
+                    height: 3,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:7.0,right:7,top:3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'serviceProviders'.tr,
+                          style: GoogleFonts.cairo(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        InkWell(
+                          child: Text(
+                            'seeAll'.tr,
+                            style: GoogleFonts.cairo(
+                              fontSize: 17,
+                              color:AppColors.textColorGreyMode,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          onTap:(){
+                            Get.to(const AllEmpView());
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                GetBuilder<HomeController>(
+                  builder: (_) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: EmployeeWidget(),
+                    );
+                  }
                 ),
+                  const SizedBox(
+                    height: 150,
+                  )
+                ],
               ),
-              const FireBaseView(
-                typeFilter: 'top',
-                collection: 'services',
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:7.0,right:7,top:3),
-                child: Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'freelancers'.tr,
-                      style: GoogleFonts.cairo(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ), InkWell(
-                      child: Text(
-                        'seeAll'.tr,
-                        style: GoogleFonts.cairo(
-                          fontSize: 17,
-                          color:AppColors.textColorGreyMode,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),onTap:(){
-                        Get.to(const AllFreelancersView());
-
-                    },
-                    ),
-                  ],
-                ),
-              ),
-
-              const FireBaseView(
-                typeFilter: 'normal',
-                collection: 'freelancers',
-              ),
-
-    const SizedBox(
-                height: 3,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:7.0,right:7,top:3),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'serviceProviders'.tr,
-                      style: GoogleFonts.cairo(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    InkWell(
-                      child: Text(
-                        'seeAll'.tr,
-                        style: GoogleFonts.cairo(
-                          fontSize: 17,
-                          color:AppColors.textColorGreyMode,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onTap:(){
-                        Get.to(const AllEmpView());
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            GetBuilder<HomeController>(
-              builder: (_) {
-                return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: EmployeeWidget(),
-                );
-              }
             ),
-              const SizedBox(
-                height: 150,
-              )
-            ],
-          ),
-        ),
-      ),
+          ):const Center(
+            child: CircularProgressIndicator(),
+          )
+        );
+      }
     );
   }
 
@@ -258,9 +293,12 @@ class HomeView extends GetView<HomeController> {
                             clipBehavior: Clip.antiAlias,
                             child: Image(
                               height: 180,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.error);
+                              },
                               width: 150,
                               fit: BoxFit.cover,
-                              image: NetworkImage(  controller.empList[index]['image'] ?? '' ),
+                              image: NetworkImage(controller.empList[index]['image'] ?? '' ),
                             )),
                         Text(
                           controller.empList[index]['name'],

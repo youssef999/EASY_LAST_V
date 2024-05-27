@@ -150,16 +150,19 @@ String type='users';
 
     String token='';
 
-    getFreelancerToken(String freelancerEmail)async {
+
+
+
+    getEmpToken(String freelancerEmail)async {
+      print("EMP EMAIL=="+freelancerEmail);
   QuerySnapshot querySnapshot =
   await FirebaseFirestore.instance.collection
-    ('freelancers').where('email',isEqualTo: freelancerEmail).get();
-
+    ('employees').where('email',isEqualTo: freelancerEmail).get();
   try{
     List<Map<String, dynamic>> data
     = querySnapshot.docs.map((DocumentSnapshot doc) =>
     doc.data() as Map<String, dynamic>).toList();
-    token=data[0]['token'];
+    token = data[0]['token'];
   }
   catch(e){
     // ignore: avoid_print
@@ -173,8 +176,32 @@ String type='users';
   update();
 }
 
-    getUserToken(String userEmail)async {
+    getFreelancerToken(String freelancerEmail)async {
+  QuerySnapshot querySnapshot =
+  await FirebaseFirestore.instance.collection
+    ('freelancers').where('email',isEqualTo: freelancerEmail).get();
 
+  try{
+
+    List<Map<String, dynamic>> data
+    = querySnapshot.docs.map((DocumentSnapshot doc) =>
+    doc.data() as Map<String, dynamic>).toList();
+    token = data[0]['token'];
+
+  }
+  catch(e){
+    // ignore: avoid_print
+    print("E.......");
+    // ignore: avoid_print
+    print(e);
+    // orderState='error';
+    // ignore: avoid_print
+    print("E.......");
+  }
+  update();
+}
+
+    getUserToken (String userEmail)async {
   QuerySnapshot querySnapshot =
   await FirebaseFirestore.instance.collection
     ('users').where('email',isEqualTo: userEmail).get();
@@ -197,6 +224,9 @@ String type='users';
 }
 
 addOrderToFirebase(DocumentSnapshot data)async{
+
+
+  
 
  NotificationController notificationController=Get.put(NotificationController());
 
@@ -368,6 +398,9 @@ NotificationController notificationController=Get.put(NotificationController());
 
 addEmpOrderToFireStore2(DocumentSnapshot data)async{
 
+
+ 
+
       print("DATASERRRRR====="+data.toString());
       print("DATASERRRRR====="+data['name'].toString());
   final box=GetStorage();
@@ -459,7 +492,7 @@ addEmpOrderToFireStore2(DocumentSnapshot data)async{
   }
 }
 
-addEmpOrderToFireStore(Map<String,dynamic> data)async{
+addEmpOrderToFireStore (Map<String,dynamic> data)async{
   final box=GetStorage();
 
   String locationName= box.read('location').toString();
